@@ -1,1 +1,1 @@
-# accessible-python-web-ide
+# Accessible Python Web IDE for Blind / Low-Vision Students
