@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Web IDE</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <script src="../static/script.js"></script>
+</head>
+<body>
+    <h1 class="title">Python Web IDE</h1>
+
+    <div id="container" class="container">
+        <div id="line-numbers" class="container__lines"></div>
+        <textarea id="textarea" class="container__textarea">
+
+# Online Python - IDE, Editor, Compiler, Interpreter
+            
+def sum(a, b):
+    return (a + b)
+            
+a = int(input('Enter 1st number: '))
+b = int(input('Enter 2nd number: '))
+            
+print(f'Sum of {a} and {b} is {sum(a, b)}')
+        </textarea>
+    </div>
+    <div>
+        <button class="run-button" onclick="button_click()">
+            <span class="play-symbol">&#9658;</span>
+            <span>Run</span>
+        </button>
+    </div>  
+    <div class="output">
+        <h3 class="output-header">Output</h3>
+        <textarea class="output-box" id="output"></textarea>
+    </div>
+
+</body>
+</html>
