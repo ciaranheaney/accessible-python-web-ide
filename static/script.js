@@ -1,4 +1,9 @@
+
+// For code editor line numbers
 document.addEventListener('DOMContentLoaded', () => {
+    // Places cursor in text box when site is loaded
+    document.getElementById("textarea").focus();
+
     const textarea = document.getElementById('textarea');
     const lineNumbersEle = document.getElementById('line-numbers');
 
@@ -93,11 +98,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Function for button click
+async function button_click() {
+    const code = document.getElementById("textarea").value;
 
+    const response = await fetch("/run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code })
+      });
 
-
-
-function button_click() {
-    let code = document.getElementById("textarea").innerHTML;
-    console.log(code);
+    const data = await response.json();
+    document.getElementById("output").textContent = data.output;
 }
