@@ -2,8 +2,8 @@
 
 ##### File Organization
 
-* templates/ includes all .html files
-* static/ includes all .css and .js files
+* `templates/` includes all .html files
+* `static/` includes all .css and .js files
 
 ##### Basic Instructions (Temporary)
 
