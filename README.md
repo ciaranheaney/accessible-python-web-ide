@@ -1,13 +1,13 @@
 # Accessible Python Web IDE for Blind / Low-Vision Students
 
-##### File Organization
+### File Organization
 
-* `templates/` includes all .html files
-* `static/` includes all .css and .js files
+* `templates/` includes .html file
+* `static/` includes .css and .js file
 
-##### Basic Instructions (Temporary)
+### Basic Instructions (Temporary)
 
-1. Run run.py in terminal
+1. Run `run.py` in terminal
 
 ```
 python3 run.py
