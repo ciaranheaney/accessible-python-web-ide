@@ -9,9 +9,9 @@
 
 1. Run run.py in terminal
 
-'''
+```
 python3 run.py
-'''
+```
 
 2. Visit address given in stdout
 
