@@ -7,7 +7,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 10rem;
-    margin: 0 20px;
+    margin: 0;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -20,6 +20,10 @@ body {
 
 .title {
     margin: 0;
+    padding: 5px 25px;
+    font-size: 40px;
+    background: rgb(83, 163, 238);
+    color: white;
 }
 
 .container {
@@ -27,8 +31,9 @@ body {
     border: 1px solid rgb(203 213 225);
     border-radius: 0.5rem;
     overflow: hidden;
-    max-height: 32rem;
+    max-height: 24rem;
     min-height: 15em;
+    margin: 0 20px;
 }
 
 .container__textarea {
@@ -38,6 +43,7 @@ body {
     padding: 0.5rem;
     width: 100%;
     height: 30em;
+    font-size: 20px;
 }
 
 .container__lines {
@@ -45,6 +51,14 @@ body {
     padding: 0.5rem;
     text-align: right;
     overflow: hidden;
+    background-color: rgb(237, 237, 237);
+    font-size: 20px;
+}
+
+.button-container {
+    display: flex; 
+    gap: 12px;
+    margin: 0 20px;
 }
 
 .run-button {
@@ -52,10 +66,14 @@ body {
     border: none;
     border-radius: 3px;
     border: 2px solid #008d4c;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     font-weight: bold;
     color: white;
     font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 .run-button:hover {
@@ -73,14 +91,15 @@ body {
     color: white;
 }
 
-.output {
+.output-container {
     display: flex;
     flex: 1;
     flex-direction: column;
     border: 1px solid rgb(203 213 225);
     border-radius: 0.5rem;
-    width: 100%;
     margin-bottom: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
     min-height: 10em;
 }
 
@@ -88,6 +107,7 @@ body {
     margin: 0;
     padding-left: 8px;
     border-bottom: 1px solid rgb(203 213 225);
+    font-size: 36px;
 }
 
 .output-box {
@@ -95,4 +115,66 @@ body {
     resize: none;
     border: none;
     flex: 1;
+    font-size: 20px;
+}
+
+.erase-icon {
+    height: 22px;
+}
+
+.clear-button {
+    background-color: white;
+    border: none;
+    border-radius: 3px;
+    border: 2px solid black;
+    font-weight: bold;
+    color: black;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.clear-button:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+button {
+    height: 50px;
+    width: 100px;
+}
+
+.stop-button {
+    background-color: rgb(215, 57, 37);
+    border: none;
+    border-radius: 3px;
+    border: 2px solid rgb(215, 57, 37);
+    /* padding: 10px 20px; */
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    .play-symbol {
+        font-size: 24px;
+        color: white;
+    }
+}
+
+
+
+.stop-button:hover {
+    background-color: white;
+    border: 2px solid rgb(215, 57, 37);
+    color: rgb(215, 57, 37);
+    cursor: pointer;
+
+    .play-symbol {
+        color: rgb(215, 57, 37);
+    }
 }

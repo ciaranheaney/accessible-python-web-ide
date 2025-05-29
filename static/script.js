@@ -96,10 +96,12 @@ document.addEventListener('DOMContentLoaded', () => {
     textarea.addEventListener('scroll', () => {
         lineNumbersEle.scrollTop = textarea.scrollTop;
     });
+
 });
 
-// Function for button click
-async function button_click() {
+// Function for running code
+async function run_code() {
+
     const code = document.getElementById("textarea").value;
 
     const response = await fetch("/run", {
@@ -111,3 +113,13 @@ async function button_click() {
     const data = await response.json();
     document.getElementById("output").textContent = data.output;
 }
+
+
+// Function to clear code
+async function clear_code() {
+    if (confirm("Are you sure you want to reset code?\nYou will not be able to recover your code after resetting.")) {
+        document.getElementById("textarea").textContent = '\n# Write your code below...\n';
+        document.getElementById("output").textContent = '';
+    }
+}
+
