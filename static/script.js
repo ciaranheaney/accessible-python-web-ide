@@ -111,6 +111,7 @@ async function run_code() {
       });
 
     const data = await response.json();
+    console.log(data.output);
     document.getElementById("output").textContent = data.output;
 }
 
@@ -118,7 +119,7 @@ async function run_code() {
 // Function to clear code
 async function clear_code() {
     if (confirm("Are you sure you want to reset code?\nYou will not be able to recover your code after resetting.")) {
-        document.getElementById("textarea").textContent = '\n# Write your code below...\n';
+        document.getElementById("textarea").value = '\n# Write your code below...\n';
         document.getElementById("output").textContent = '';
     }
 }
