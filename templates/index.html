@@ -9,9 +9,9 @@
 </head>
 <body>
     <h1 class="title">Python Web IDE</h1>
-    <div id="container" class="container">
-        <div id="line-numbers" class="container__lines"></div>
-        <textarea id="textarea" class="container__textarea">
+    <main id="editor-container">
+        <div id="line-numbers"></div>
+        <textarea id="code-area">
 
 # Online Python - IDE, Editor, Compiler, Interpreter
             
@@ -23,11 +23,12 @@ b = 14
 
 print(f'Sum of {a} and {b} is {sum(a, b)}')
         </textarea>
+    </main>
     </div>
     <div class="button-container">
-        <button class="run-button" id="run" onclick="run_code()">
-            <div class="play-symbol" id="symbol">&#9658;</div>
-            <div class="button-word" id="word">Run</div>
+        <button class="run-button" onclick="run_code()">
+            <div class="play-symbol">&#9658;</div>
+            <div class="button-word">Run</div>
         </button>
         <button class="clear-button" onclick="clear_code()">
             <img src="../static/images/eraser-icon.png" class="erase-icon">
@@ -35,8 +36,8 @@ print(f'Sum of {a} and {b} is {sum(a, b)}')
         </button>
     </div>  
     <div class="output-container">
-        <h3 class="output-header">Output</h3>
-        <textarea class="output-box" id="output" readonly></textarea>
+        <h2 class="output-header">Output</h2>
+        <textarea id="output" readonly></textarea>
     </div>
 
 
