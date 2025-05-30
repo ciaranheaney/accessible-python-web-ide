@@ -1,3 +1,4 @@
+/* Overall page styling */
 body {
     color: rgb(51 65 85);
     font-size: 1rem;
@@ -18,15 +19,19 @@ body {
     box-sizing: border-box;
 }
 
+
+/* Header styling */
 .title {
     margin: 0;
     padding: 5px 25px;
     font-size: 40px;
-    background: rgb(83, 163, 238);
+    background: rgb(55, 137, 214);
     color: white;
 }
 
-.container {
+
+/* Code editor styling */
+#editor-container {
     display: flex;
     border: 1px solid rgb(203 213 225);
     border-radius: 0.5rem;
@@ -35,10 +40,9 @@ body {
     margin: 0 20px;
     flex: 1;
     /* overflow: hidden; */
-
 }
 
-.container__textarea {
+#code-area {
     border: none;
     outline: none;
     resize: none;
@@ -47,7 +51,7 @@ body {
     font-size: 20px;
 }
 
-.container__lines {
+#line-numbers {
     border-right: 1px solid rgb(203 213 225);
     padding: 0.5rem;
     text-align: right;
@@ -60,6 +64,13 @@ body {
     display: flex; 
     gap: 12px;
     margin: 0 20px;
+}
+
+
+/* Button styling */
+button {
+    height: 50px;
+    width: 100px;
 }
 
 .run-button {
@@ -91,6 +102,31 @@ body {
     color: white;
 }
 
+.clear-button {
+    background-color: white;
+    border: none;
+    border-radius: 3px;
+    border: 2px solid black;
+    font-weight: bold;
+    color: black;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.clear-button:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.erase-icon {
+    height: 22px;
+}
+
+
+/* Output styling */
 .output-container {
     display: flex;
     flex: 1;
@@ -111,70 +147,10 @@ body {
     font-size: 36px;
 }
 
-.output-box {
+#output {
     margin: 3px;
     resize: none;
     border: none;
     flex: 1;
     font-size: 20px;
-}
-
-.erase-icon {
-    height: 22px;
-}
-
-.clear-button {
-    background-color: white;
-    border: none;
-    border-radius: 3px;
-    border: 2px solid black;
-    font-weight: bold;
-    color: black;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-
-.clear-button:hover {
-    background-color: lightgray;
-    cursor: pointer;
-}
-
-button {
-    height: 50px;
-    width: 100px;
-}
-
-.stop-button {
-    background-color: rgb(215, 57, 37);
-    border: none;
-    border-radius: 3px;
-    border: 2px solid rgb(215, 57, 37);
-    font-weight: bold;
-    color: white;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-
-    .play-symbol {
-        font-size: 24px;
-        color: white;
-    }
-}
-
-
-
-.stop-button:hover {
-    background-color: white;
-    border: 2px solid rgb(215, 57, 37);
-    color: rgb(215, 57, 37);
-    cursor: pointer;
-
-    .play-symbol {
-        color: rgb(215, 57, 37);
-    }
 }
