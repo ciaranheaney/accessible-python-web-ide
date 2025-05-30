@@ -2,9 +2,9 @@
 // For code editor line numbers
 document.addEventListener('DOMContentLoaded', () => {
     // Places cursor in text box when site is loaded
-    document.getElementById("textarea").focus();
+    document.getElementById("code-area").focus();
 
-    const textarea = document.getElementById('textarea');
+    const textarea = document.getElementById('code-area');
     const lineNumbersEle = document.getElementById('line-numbers');
 
     const textareaStyles = window.getComputedStyle(textarea);
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Function for running code
 async function run_code() {
 
-    const code = document.getElementById("textarea").value;
+    const code = document.getElementById("code-area").value;
 
     const response = await fetch("/run", {
         method: "POST",
@@ -119,7 +119,7 @@ async function run_code() {
 // Function to clear code
 async function clear_code() {
     if (confirm("Are you sure you want to reset code?\nYou will not be able to recover your code after resetting.")) {
-        document.getElementById("textarea").value = '\n# Write your code below...\n';
+        document.getElementById("code-area").value = '\n# Write your code below...\n';
         document.getElementById("output").textContent = '';
     }
 }
