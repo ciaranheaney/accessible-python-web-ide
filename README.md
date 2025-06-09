@@ -39,7 +39,7 @@ Follow these steps to set up and run the project locally on a Windows machine:
 
 
 ## Project Structure
-* `v1/, v2/,...`: Contain each version of the site
+* `v1/, v2/, ...`: Contain each version of the site
 * `server.py`: Contains the Python backend code
 * `templates/`: Contains the HTML frontend code
 * `static/` Contains the CSS and JS frontend code
