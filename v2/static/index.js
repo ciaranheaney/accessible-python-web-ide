@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const runButton = document.getElementById('run-btn');
     runButton.addEventListener('click', () => {
         isClicked += 1;
-        console.log(isClicked);
+        // console.log(isClicked);
 
         // Change run button to stop button
         document.getElementById('run-btn').textContent = 'Stop Code';
@@ -161,9 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('run-btn').className = 'run';
             document.getElementById('run-btn').textContent = 'Run Code';
             outputArea.value += "\n** Process Stopped **\n";
-            // prompts = [];
-            // lines = [];
-            // code = "";
             return;
         }
 
@@ -193,15 +190,11 @@ async function awaitUserInput(prompts, code) {
 
     const outputArea = document.getElementById('output-area');
     outputArea.focus();
-    let stop = 0;
-    const inputs = []
+    const inputs = [];
+
     for (let i = 0; i < prompts.length; i++) {
         outputArea.value += prompts[i].substring(1,prompts[i].length - 1);
         const prev = outputArea.value;
-
-        // if (isClicked > 1) {
-        //     i += 1;
-        // }
 
         await waitingEnterPress();
         await delay(1);
@@ -243,7 +236,9 @@ function waitingEnterPress() {
     });
   }
   
+
 function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
+  
   
