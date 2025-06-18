@@ -8,38 +8,106 @@
     <script src="../static/script.js"></script>
     <title>Python Web IDE</title>
 </head>
-<body>
+<body onload="editor.focus()">
     <header class="header-container">
         <h1 class="title">Python Web IDE</h1>
-        <nav id="menu" class="menu">
-            <div class="menu-top-btns">
-                <button class="close-menu-btn" id="close-menu-btn" onclick="hide_menu()" tabindex="-1">
-                    Hide
-                    <i class="fas fa-times" style="font-size: 32px;"></i>
-                </button>
-                <button class="reset-btn" id="reset-btn" onclick="reset_settings()">
-                    Reset
-                    <i class="fas fa-redo" style="font-size: 32px;"></i>
-                </button>
-            </div>
-            <h2 class="menu-header">Accessibility Settings</h2>
-
-            <div class="font-input-container">
-                <div>
-                    <label for="font-input" class="font-label">Font Size</label>
-                    <input type="range" class="font-input" id="font-input" value="20" min="12" max="48" step="2" oninput="change_font_size(this.value)">
-                </div>
-                <output class="font-output" id="font-size-output">20</output>
-            </div>
-
-
-
-        </nav>
         <button class="menu-btn" id="menu-btn" onclick="show_menu()">
             Menu
             <i class="fas fa-bars" style="font-size: 32px"></i>
         </button>
     </header>
+
+    <nav id="menu" class="menu" aria-hidden="true" aria-disabled="true">
+        <div class="menu-top-btns">
+            <button class="close-menu-btn" id="close-menu-btn" onclick="hide_menu()" tabindex="-1">
+                Hide
+                <i class="fas fa-times" style="font-size: 32px;"></i>
+            </button>
+            <button class="reset-btn" id="reset-btn" onclick="reset_settings()">
+                Reset
+                <i class="fas fa-redo" style="font-size: 32px;"></i>
+            </button>
+        </div>
+        <h2 class="menu-header">Accessibility Settings</h2>
+
+        <div class="font-input-container">
+            <div>
+                <label for="font-input" class="label">Font Size</label>
+                <input type="range" class="font-input" id="font-input" value="20" min="12" max="48" step="2" oninput="change_font_size(this.value)">
+            </div>
+            <output class="font-output" id="font-size-output">20</output>
+        </div>
+
+        
+        <!-- <div onchange="change_theme()">
+            <input type="radio" id="light" name="theme" value="Light" checked>
+            <label for="light">Light</label><br>
+            <input type="radio" id="dark" name="theme" value="Dark">
+            <label for="dark">Dark</label><br>
+            <input type="radio" id="light-contrast" name="theme" value="Low Contrast">
+            <label for="light-contrast">Light Contrast</label><br>
+            <input type="radio" id="dark-contrast" name="theme" value="High Contrast">
+            <label for="dark-contrast">Dark Contrast</label><br>
+        </div> -->
+        <div class="editor-theme">
+            <label for="editor-theme" class="label">Editor Theme</label>
+            <select name="editor-theme" id="editor-theme" class="editor-theme-select" onchange="change_theme()">
+                <optgroup label="Light Themes">
+                    <option value="chrome">Chrome</option>
+                    <option value="cloud_editor">Cloud Editor</option>
+                    <option value="cloud9_day">Cloud9 Day</option>
+                    <option value="clouds">Clouds</option>
+                    <option value="crimson_editor">Crimson Editor</option>
+                    <option value="dawn">Dawn</option>
+                    <option value="dreamweaver">Dreamweaver</option>
+                    <option value="eclipse">Eclipse</option>
+                    <option value="github_light_default">GitHub Light Default</option>
+                    <option value="github">GitHub</option>
+                    <option value="gruvbox_light_hard">Gruvbox Light Hard</option>
+                    <option value="iplastic">IPlastic</option>
+                    <option value="katzenmilch">KatzenMilch</option>
+                    <option value="kuroir">Kuroir</option>
+                    <option value="solarized_light">Solarized Light</option>
+                    <option value="sqlserver">SQL Server</option>
+                    <option value="textmate" selected="selected">Textmate</option>
+                    <option value="tomorrow">Tomorrow</option>
+                    <option value="xcode">XCode</option>
+                </optgroup>
+                <optgroup label="Dark Themes">
+                    <option value="ambiance">Ambiance</option>
+                    <option value="chaos">Chaos</option>
+                    <option value="cloud_editor_dark">Cloud Editor Dark</option>
+                    <option value="cloud9_night_low_color">Cloud9 Night Low Color</option>
+                    <option value="cloud9_night">Cloud9 Night</option>
+                    <option value="clouds_midnight">Clouds Midnight</option>
+                    <option value="cobalt">Cobalt</option>
+                    <option value="dracula">Dracula</option>
+                    <option value="github_dark">GitHub Dark</option>
+                    <option value="gob">Green on Black</option>
+                    <option value="gruvbox_dark_hard">Gruvbox Dark Hard</option>
+                    <option value="gruvbox">Gruvbox</option>
+                    <option value="idle_fingers">idle Fingers</option>
+                    <option value="kr_theme">krTheme</option>
+                    <option value="merbivore_soft">Merbivore Soft</option>
+                    <option value="merbivore">Merbivore</option>
+                    <option value="mono_industrial">Mono Industrial</option>
+                    <option value="monokai">Monokai</option>
+                    <option value="nord_dark">Nord Dark</option>
+                    <option value="one_dark">One Dark</option>
+                    <option value="pastel_on_dark">Pastel on Dark</option>
+                    <option value="solarized_dark">Solarized Dark</option>
+                    <option value="terminal">Terminal</option>
+                    <option value="tomorrow_night_blue">Tomorrow Night Blue</option>
+                    <option value="tomorrow_night_bright">Tomorrow Night Bright</option>
+                    <option value="tomorrow_night_eighties">Tomorrow Night Eighties</option>
+                    <option value="tomorrow_night">Tomorrow Night</option>
+                    <option value="twilight">Twilight</option>
+                    <option value="vibrant_ink">Vibrant Ink</option>
+                </optgroup>
+            </select>
+        </div>
+
+    </nav>
 
     <main class="editor-container">
         <header class="editor-header">
@@ -54,19 +122,24 @@
             </button>
         </header>
         <div class="code-container" id="code-container">
-            <div class="line-numbers" id="line-numbers"></div>
-            <textarea class="code-area" id="code-area" wrap="off" data-gramm="false">
+<pre id="editor">
 
 # Python Web IDE - Editor, Compiler, Interpreter
 
 def sum(a, b):
     return (a + b)
 
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
 a = int(input('Enter 1st number: '))
 b = int(input('Enter 2nd number: '))
 
 print(f'Sum of {a} and {b} is {sum(a, b)}')
-</textarea>
+print(f'Factorial of {a} is {factorial(a)}')
+</pre>
         </div>
     </main>
 
@@ -80,6 +153,29 @@ print(f'Sum of {a} and {b} is {sum(a, b)}')
         </header>
         <textarea class="output-area" id="output-area"></textarea>
     </article>
+
+    <!-- <script src="../src/ace.js" type="text/javascript" charset="utf-8"></script> -->
+    <!-- <script src="../src/ext-language_tools.js"></script> -->
+    <!-- <script src="../src/ext-inline_autocomplete.js"></script> -->
+    <script src="../static/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/ace/ext-language_tools.js"></script>
+    <script src="../static/ace/ext-inline_autocomplete.js"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/textmate");
+        editor.session.setMode("ace/mode/python");
+
+        editor.setOptions({
+            enableBasicAutocompletion: true,
+            enableInlineAutocompletion: true,
+            enableSnippets: false,
+            enableLiveAutocompletion: true
+        });
+
+        editor.focus()
+
+    </script>
+    <script src="../static/script.js"></script>
 
 </body>
 </html>
