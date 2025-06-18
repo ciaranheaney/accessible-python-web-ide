@@ -32,15 +32,21 @@
             <!--Remove wrap attribute to wrap text to next line-->
             <textarea id="code" autofocus tabindex="1" wrap="off" data-gramm="false">
 
-# Online Python - IDE, Editor, Compiler, Interpreter
-            
+# Python Web IDE - Editor, Compiler, Interpreter
+
 def sum(a, b):
     return (a + b)
+
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
 
 a = int(input('Enter 1st number: '))
 b = int(input('Enter 2nd number: '))
 
 print(f'Sum of {a} and {b} is {sum(a, b)}')
+print(f'Factorial of {a} is {factorial(a)}')
 </textarea>
         </div>
     </main>
