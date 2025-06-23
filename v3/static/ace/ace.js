@@ -2078,6 +2078,7 @@ var TextInput;
 TextInput = function (/**@type{HTMLTextAreaElement} */ parentNode, /**@type{import("../editor").Editor} */ host) {
     var text = dom.createElement("textarea");
     text.className = "ace_text-input";
+    text.id = "ace_text-input";
     text.setAttribute("wrap", "off");
     text.setAttribute("autocorrect", "off");
     text.setAttribute("autocapitalize", "off");
