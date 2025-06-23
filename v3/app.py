@@ -45,16 +45,15 @@ def run_code():
 
     extra = ""
     try:
-        stdout, stderr = proc.communicate(code, timeout=2)
+        stdout, stderr = proc.communicate(code, timeout=5)
     except subprocess.TimeoutExpired:
         extra = "process timed out"
         proc.kill()
         stdout, stderr = proc.communicate()
 
-    # response = Response(f"{stdout.decode()}\n{stderr.decode()}\n{extra}")
     output = stdout.decode() + stderr.decode() + extra
 
     return jsonify({"output": output})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 9000)))
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
