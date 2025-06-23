@@ -24,6 +24,9 @@ def drop_perms():
     filter.add_rule(
         seccomp.ALLOW, "write", seccomp.Arg(0, seccomp.EQ, sys.stderr.fileno())
     )
+    filter.add_rule(
+        seccomp.ALLOW, "read", seccomp.Arg(0, seccomp.EQ, sys.stdin.fileno())
+    )
 
     # load the filter in the kernel
     filter.load()
