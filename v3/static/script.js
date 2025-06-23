@@ -1,8 +1,49 @@
 
+// Buttons
+const menu_button = document.getElementById('menu-btn');
+const hide_menu_button = document.getElementById('close-menu-btn');
+const run_button = document.getElementById('run-btn');
+const clear_code_button = document.getElementById('clear-code-btn');
+const clear_output_button = document.getElementById('clear-output-btn');
+const reset_button = document.getElementById('reset-btn');
+const font_input = document.getElementById('font-input');
+const editor_theme_input = document.getElementById('editor-theme');
+
+// Areas
+const body = document.querySelector('body');
+const banner = document.getElementById('banner');
+const menu = document.getElementById('menu');
+const editor_container = document.getElementById('editor-container');
+const editor_header = document.getElementById('editor-header');
+const editor_area = document.getElementById('editor');
+const editor_input = document.querySelector('.ace_text-input');
+const ace_scrollbar = document.querySelector('.ace_scrollbar');
+const output_container = document.getElementById('output-container');
+const output_header = document.getElementById('output-header');
+const output_area = document.getElementById('output-area');
+const font_size_output = document.getElementById('font-size-output');
+const overlay = document.getElementById('overlay');
+
+// Themes
+const light_themes = [
+    "chrome", "cloud_editor", "cloud9_day", "clouds", "crimson_editor", 
+    "dawn", "dreamweaver", "eclipse", "github_light_default", "github",
+    "gruvbox_light_hard", "iplastic", "katzenmilch", "kuroir", 
+    "solarized_light", "sqlserver", "textmate", "tomorrow", "xcode"
+]
+const dark_themes = [
+    "ambiance", "chaos", "cloud_editor_dark", "cloud9_night_low_color",
+    "cloud9_night", "clouds_midnight", "cobalt", "dracula", "github_dark",
+    "gob", "gruvbox_dark_hard", "gruvbox", "idle_fingers", "kr_theme",
+    "merbivore_soft", "merbivore", "mono_industrial", "monokai", "nord_dark",
+    "one_dark", "pastel_on_dark", "solarized_dark", "terminal", "tomorrow_night_blue",
+    "tomorrow_night_bright", "tomorrow_night_eighties", "tomorrow_night", 
+    "twilight", "vibrant_ink"
+]
+
 async function run_code() {
     const code = editor.getValue();
     console.log(code)
-
 
     const response = await fetch("/run", {
         method: "POST",
@@ -11,7 +52,7 @@ async function run_code() {
     });
 
     const data = await response.json();
-    document.getElementById('output-area').value = data.output;
+    output_area.value = data.output;
     console.log(data.output);
 }
 
@@ -23,43 +64,93 @@ function clear_code() {
 }
 
 function clear_output() {
-    const output_area = document.getElementById('output-area');
     output_area.value = "";
     editor.focus();
 }
 
 function show_menu() {
-    document.getElementById('menu').classList.add('open');
-    document.getElementById('menu').ariaHidden = 'false';
-    document.getElementById('menu').ariaDisabled = 'false';
-    document.getElementById('menu-btn').tabIndex = '-1';
-    document.getElementById('close-menu-btn').tabIndex = '0';
-    document.getElementById('close-menu-btn').focus();
+    menu.classList.add('open');
+    overlay.style.display = 'block';
+
+    menu_button.tabIndex = '-1';
+    run_button.tabIndex = '-1';
+    clear_code_button.tabIndex = '-1';
+    clear_output_button.tabIndex = '-1';
+    output_area.tabIndex = '-1';
+    editor_input.tabIndex = '-1';
+    ace_scrollbar.tabIndex = '-1';
+
+    hide_menu_button.tabIndex = '0';
+    reset_button.tabIndex = '0';
+    font_input.tabIndex = '0';
+    editor_theme_input.tabIndex = '0';
+    document.querySelectorAll('.page-theme label input').forEach(input => input.tabIndex = '0');
+
+
+
 }
 
 function hide_menu() {
-    document.getElementById('menu').classList.remove('open');
-    document.getElementById('menu').ariaHidden = 'true'
-    document.getElementById('menu').ariaDisabled = 'true';
-    document.getElementById('close-menu-btn').tabIndex = '-1';
-    document.getElementById('menu-btn').tabIndex = '0';
-    document.getElementById('menu-btn').focus();
+    menu.classList.remove('open');
+    overlay.style.display = 'none';
+
+    hide_menu_button.tabIndex = '-1';
+    reset_button.tabIndex = '-1';
+    font_input.tabIndex = '-1';
+    editor_theme_input.tabIndex = '-1';
+    document.querySelectorAll('.page-theme label input').forEach(input => input.tabIndex = '-1');
+
+    menu_button.tabIndex = '0';
+    run_button.tabIndex = '0';
+    clear_code_button.tabIndex = '0';
+    clear_output_button.tabIndex = '0';
+    output_area.tabIndex = '0';
+    editor_input.tabIndex = '0';
+    ace_scrollbar.tabIndex = '0';
 }
 
 
 function change_font_size(font_size) {
-    document.getElementById('editor').style.fontSize = `${font_size}px`;
-    document.getElementById('output-area').style.fontSize = `${font_size}px`;
-    document.getElementById('font-size-output').value = font_size;
+    editor_area.style.fontSize = `${font_size}px`;
+    output_area.style.fontSize = `${font_size}px`;
+    font_size_output.value = font_size;
 }
 
 
+function close_menu(event) {
+    if (event.pointerType !== 'mouse') return;
+    if (menu.classList.contains('open')) {
+        var mouseClickWidth = event.clientX;
+        if (window.innerWidth - mouseClickWidth >= menu.offsetWidth){
+            menu.classList.remove('open');
+            overlay.style.display = 'none';
+            hide_menu_button.tabIndex = '-1';
+            reset_button.tabIndex = '-1';
+            font_input.tabIndex = '-1';
+            editor_theme_input.tabIndex = '-1';
+            document.querySelectorAll('.page-theme label input').forEach(input => input.tabIndex = '-1');
 
-function change_theme() {
+            menu_button.tabIndex = '0';
+            run_button.tabIndex = '0';
+            clear_code_button.tabIndex = '0';
+            clear_output_button.tabIndex = '0';
+            output_area.tabIndex = '0';
+            editor_input.tabIndex = '0';
+            ace_scrollbar.tabIndex = '0';
+        }
+    }
+
+}
+document.addEventListener("click", close_menu);
+
+
+function change_editor_theme(theme) {
     // Change editor theme
-    const theme = document.getElementById('editor-theme').value;
-    console.log(theme);
-    editor.setTheme('ace/theme/' + theme);
+    setTimeout(function() {
+        console.log(theme);
+        editor.setTheme('ace/theme/' + theme);
+        editor_theme_input.value = theme;
+    }, 50);
 }
 
 function reset_settings() {
@@ -67,131 +158,25 @@ function reset_settings() {
     editor.setTheme('ace/theme/textmate');
 }
 
+function set_theme(theme) {
+    const ace_theme = editor.getTheme().split("/").at(-1);
+    if (theme === "light" && !light_themes.includes(ace_theme)) {
+        change_editor_theme('textmate');
+    } else if (theme === "dark" && !dark_themes.includes(ace_theme)) {
+        change_editor_theme('cloud9_night_low_color');
+    }
 
-
-
-
-
-
-// document.addEventListener('DOMContentLoaded', () => {
-
-//     // Update code editor and output font-sizes using range input
-//     const rangeInput = document.getElementById('font-input');
-//     const textarea = document.getElementById('code-area');
-//     const lineNumbersArea = document.getElementById('line-numbers')
-//     const outputArea = document.getElementById('output-area')
-
-//     // Generates line numbers based on textarea contents
-//     const textareaStyles = window.getComputedStyle(textarea);
-
-//     [
-//         'fontFamily',
-//         'fontSize',
-//         'fontWeight',
-//         'letterSpacing',
-//         'lineHeight',
-//         'padding',
-//     ].forEach((property) => {
-//         lineNumbersArea.style[property] = textareaStyles[property];
-//     });
-
-//     const parseValue = (v) => v.endsWith('px') ? parseInt(v.slice(0,-2), 10) : 0;
-
-//     const font = `${textareaStyles.fontSize} ${textareaStyles.fontFamily}`;
-//     const paddingLeft = parseValue(textareaStyles.paddingLeft)
-//     const paddingRight = parseValue(textareaStyles.paddingRight)
-
-//     const canvas = document.createElement('canvas');
-//     const context = canvas.getContext('2d');
-//     context.font = font;
-
-//     const calculateNumLines = (str) => {
-//         const textareaWidth = textarea.getBoundingClientRect().width - paddingLeft - paddingRight;
-//         const words = str.split(' ');
-//         let lineCount = 0;
-//         let currentLine = '';
-//         for (let i = 0; i < words.length; i++) {
-//             const wordWidth = context.measureText(words[i] + '').width;
-//             const lineWidth = context.measureText(currentLine).width;
-
-//             if (lineWidth + wordWidth > textareaWidth) {
-//                 lineCount++;
-//                 currentLine = words[i] + ' ';
-//             } else {
-//                 currentLine += words[i] + ' ';
-//             }
-//         }
-
-//         if (currentLine.trim() !== '') {
-//             lineCount++;
-//         }
-
-//         return lineCount;
-//     };
-
-
-//     const calculateLineNumbers = () => {
-//         // OPTION TO SWITCH BACK FOR TEXT WRAPPING AND LINE NUMBERS FOLLOWING
-//         // const lines = textarea.value.split('\n');
-//         // const numLines = lines.map((line) => calculateNumLines(line));
-
-//         // let lineNumbers = [];
-//         // let i = 1;
-//         // while (numLines.length > 0) {
-//         //     const numLinesOfSentence = numLines.shift()
-//         //     console.log(numLines);
-//         //     lineNumbers.push(i)
-//         //     if (numLinesOfSentence > 1) {
-//         //         Array(numLinesOfSentence - 1)
-//         //             .fill('')
-//         //             .forEach((_) => lineNumbers.push(''));
-//         //     }
-//         //     i++;
-//         // }
-//         // return lineNumbers;
-
-//         // OPTION FOR NO TEXT WRAPPING WITH HORIZONTAL SCROLLBAR
-//         const numLines = textarea.value.split('\n').length;
-//         let lineNumbers = [];
-//         for (let i = 1; i <= numLines; i++) {
-//             lineNumbers.push(i);
-//         }
-//         return lineNumbers;
-//     };
-
-
-//     const displayLineNumbers = () => {
-//         const lineNumbers = calculateLineNumbers();
-//         lineNumbersArea.innerHTML = Array.from({
-//             length: lineNumbers.length
-//         }, (_, i) => `<div>${lineNumbers[i] || '&nbsp;'}</div>`).join('\n');
-//     };
-
-
-//     textarea.addEventListener('input', () => {
-//         displayLineNumbers()
-//     });
-
-//     displayLineNumbers();
-
-//     const ro = new ResizeObserver(() => {
-//         const rect = textarea.getBoundingClientRect();
-//         lineNumbersArea.style.height = `${rect.height}px`;
-//         displayLineNumbers();
-//     })
-//     ro.observe(textarea)
-
-//     textarea.addEventListener('scroll', () => {
-//         lineNumbersArea.scrollTop = textarea.scrollTop;
-//     });
-
-
-//     rangeInput.addEventListener('input', () => {
-//         const newFontSize = rangeInput.value;
-//         textarea.style.fontSize = `${newFontSize}px`;
-//         lineNumbersArea.style.fontSize = `${newFontSize}px`;
-//         outputArea.style.fontSize = `${newFontSize}px`;
-//         displayLineNumbers();
-//     })
-
-// });
+    body.classList = [`${theme}-body ${theme}`];
+    banner.classList = [`${theme}-banner header-container ${theme}`];
+    menu.classList = [`${theme}-menu menu open ${theme}`];
+    menu_button.classList = [`${theme}-menu-btn menu-btn ${theme}`];
+    hide_menu_button.classList = [`${theme}-close-menu-btn close-menu-btn ${theme}`];
+    reset_button.classList = [`${theme}-reset-btn reset-btn ${theme}`];
+    font_input.classList = [`${theme}-font-input font-input ${theme}`];
+    editor_container.classList = [`${theme}-editor-container editor-container ${theme}`];
+    editor_header.classList = [`${theme}-editor-header editor-header ${theme}`];
+    output_container.classList = [`${theme}-output-container output-container ${theme}`];
+    output_header.classList = [`${theme}-output-header output-header ${theme}`];
+    output_area.classList = [`${theme}-output-area output-area ${theme}`]
+    document.querySelectorAll('span.checkmark').forEach(checkmark => checkmark.classList = [`${theme}-checkmark checkmark`]);
+}
