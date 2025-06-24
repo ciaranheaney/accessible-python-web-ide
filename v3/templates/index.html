@@ -37,19 +37,26 @@
             </div>
             <output class="font-output" id="font-size-output">20</output>
         </div>
-
-
-
-        <div class="page-theme" id="page-theme">
+        <div>
             <label for="page-theme" class="label">Website Theme</label>
-            <label class="theme-option" for="light-theme">Light
-                <input type="radio" id="light-theme" name="theme" value="Light" onclick="set_theme('light')" checked="checked" tabindex="-1">
-                <span class="light-checkmark checkmark"></span>
-            </label>
-            <label class="theme-option" for="dark-theme">Dark
-                <input type="radio" id="dark-theme" name="theme" value="Dark" onclick="set_theme('dark')" tabindex="-1">
-                <span class="light-checkmark checkmark"></span>
-            </label>
+            <div class="page-theme" id="page-theme">
+                <label class="theme-option" for="light-theme">Light
+                    <input type="radio" id="light-theme" name="theme" value="Light" onclick="set_theme('light')" checked="checked" tabindex="-1">
+                    <span class="light-checkmark checkmark"></span>
+                </label>
+                <label class="theme-option" for="light-contrast-theme">Light Contrast
+                    <input type="radio" id="light-contrast-theme" name="theme" value="Light Contrast" onclick="set_theme('light-contrast')" tabindex="-1">
+                    <span class="light-contrast-checkmark checkmark"></span>
+                </label>
+                <label class="theme-option" for="dark-theme">Dark
+                    <input type="radio" id="dark-theme" name="theme" value="Dark" onclick="set_theme('dark')" tabindex="-1">
+                    <span class="light-checkmark checkmark"></span>
+                </label>
+                <label class="theme-option" for="dark-contrast-theme">Dark Contrast
+                    <input type="radio" id="dark-contrast-theme" name="theme" value="Dark Contrast" onclick="set_theme('dark-contrast')" tabindex="-1">
+                    <span class="dark-contrast-checkmark checkmark"></span>
+                </label>
+            </div>
         </div>
 
         <div class="editor-theme">
