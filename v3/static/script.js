@@ -146,23 +146,28 @@ document.addEventListener("click", close_menu);
 
 function change_editor_theme(theme) {
     // Change editor theme
-    setTimeout(function() {
-        console.log(theme);
-        editor.setTheme('ace/theme/' + theme);
-        editor_theme_input.value = theme;
-    }, 50);
+    console.log(theme);
+    editor.setTheme('ace/theme/' + theme);
+    editor_theme_input.value = theme;
+    
+    // setTimeout(function() {
+    //     console.log(theme);
+    //     editor.setTheme('ace/theme/' + theme);
+    //     editor_theme_input.value = theme;
+    // }, 75);
 }
 
 function reset_settings() {
     change_font_size(20);
     editor.setTheme('ace/theme/textmate');
+    set_theme('light');
 }
 
 function set_theme(theme) {
     const ace_theme = editor.getTheme().split("/").at(-1);
-    if (theme === "light" && !light_themes.includes(ace_theme)) {
+    if ((theme === "light" || theme === "light-contrast") && !light_themes.includes(ace_theme)) {
         change_editor_theme('textmate');
-    } else if (theme === "dark" && !dark_themes.includes(ace_theme)) {
+    } else if ((theme === "dark" || theme === "dark-contrast") && !dark_themes.includes(ace_theme)) {
         change_editor_theme('cloud9_night_low_color');
     }
 
@@ -177,6 +182,8 @@ function set_theme(theme) {
     editor_header.classList = [`${theme}-editor-header editor-header ${theme}`];
     output_container.classList = [`${theme}-output-container output-container ${theme}`];
     output_header.classList = [`${theme}-output-header output-header ${theme}`];
-    output_area.classList = [`${theme}-output-area output-area ${theme}`]
+    output_area.classList = [`${theme}-output-area output-area ${theme}`];
     document.querySelectorAll('span.checkmark').forEach(checkmark => checkmark.classList = [`${theme}-checkmark checkmark`]);
+
+    document.getElementById(`${theme}-theme`).checked = "checked";
 }
