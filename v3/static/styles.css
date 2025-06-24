@@ -65,7 +65,7 @@ button i {
 .menu {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 24px;
 
     position: fixed;
     top: 0;
@@ -229,9 +229,12 @@ button i {
 }
 
 .page-theme {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto auto;
+    /* flex-direction: column; */
+    /* flex-wrap: wrap; */
     gap: 8px;
+    margin-top: 8px;
 }
 
 .theme-option {
@@ -243,7 +246,7 @@ button i {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    width: min-content;
+    width: fit-content;
     border-radius: 0.3rem;
 }
 
@@ -294,7 +297,7 @@ button i {
 .editor-theme {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
 }
 
 .editor-theme-select {
@@ -307,14 +310,14 @@ select {
     padding: 4px;
     border-radius: 0.4rem;
     border: 2px outset black;
-    background: #fff;
-    opacity: 0.8;
+    background-color: #fff;
     transition: opacity 0.2s;
+    opacity: 0.8;
 }
 
 select:hover {
-    opacity: 1;
     cursor: pointer;
+    opacity: 1;
 }
 
 select:focus {
@@ -364,8 +367,8 @@ label {
 
 .run-btn:hover {
     background: #fff;
-    color: #005b31;
-    border: 2px outset #005b31;
+    color: #000;
+    border: 2px outset #000;
 }
 
 .clear-btn:hover {
@@ -433,10 +436,14 @@ label {
 
 /* Color Themes */
 .light,
-.dark {
-    transition: 0.3s;
+.dark,
+.light-contrast,
+.dark-contrast {
+    /* transition: 0.3s; */
 }
 
+
+/* Light Theme */
 .light-body {
     background-color: #fff;
 }
@@ -508,7 +515,7 @@ label {
 
 
 
-
+/* Dark Theme */
 .dark-body {
     background-color: #252525;
 }
@@ -585,4 +592,155 @@ label {
 
 .dark-output {
     background-color: rgb(45, 45, 45);
+}
+
+
+/* Light Contrast Theme */
+.light-contrast-body {
+    background-color: #fff;
+}
+
+.light-contrast-banner {
+    background-color: #fff;
+    color: #000;
+}
+
+.light-contrast-menu {
+    background-color: #fff;
+    color: #000;
+}
+
+.light-contrast-menu-btn {
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #000;
+}
+
+.light-contrast-menu-btn:hover,
+.light-contrast-menu-btn:focus {
+    background-color: #ddd;
+}
+
+.light-contrast-close-menu-btn,
+.light-contrast-reset-btn {
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #000;
+}
+
+.light-contrast-close-menu-btn:hover,
+.light-contrast-close-menu-btn:focus,
+.light-contrast-reset-btn:hover,
+.light-contrast-reset-btn:focus {
+    background-color: #ddd;
+}
+
+.light-contrast-font-input {
+    background-color: #aaa;
+}
+
+.light-contrast-font-input::-webkit-slider-thumb {
+    background-color: #000;
+}
+
+.theme-option input:checked ~ .light-contrast-checkmark {
+    background-color: #000;
+}
+
+.light-contrast-editor-container {
+    border: 2px solid #000;
+}
+
+.light-contrast-editor-header {
+    border-bottom: 2px solid #000;
+}
+
+.light-contrast-output-container {
+    border: 2px solid #000;
+}
+
+.light-contrast-output-header {
+    border-bottom: 2px solid #000;
+}
+
+.light-contrast-output-area {
+    background-color: #fff;
+}
+
+
+/* Dark Contrast Theme */
+.dark-contrast-body {
+    /* background-color: #000; */
+    background-color: rgb(24, 24, 24);
+}
+
+.dark-contrast-banner {
+    background-color: rgb(24, 24, 24);
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.dark-contrast-menu {
+    background-color: rgb(24, 24, 24);
+    color: #fff;
+}
+
+.dark-contrast-menu-btn {
+    background-color: rgb(24, 24, 24);
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.dark-contrast-menu-btn:hover,
+.dark-contrast-menu-btn:focus {
+    background-color: rgb(60, 60, 60);
+}
+
+.dark-contrast-close-menu-btn,
+.dark-contrast-reset-btn {
+    background-color: rgb(24, 24, 24);
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.dark-contrast-close-menu-btn:hover,
+.dark-contrast-close-menu-btn:focus,
+.dark-contrast-reset-btn:hover,
+.dark-contrast-reset-btn:focus {
+    background-color: rgb(60, 60, 60);
+}
+
+.dark-contrast-font-input {
+    background-color: #fff;
+}
+
+.dark-contrast-font-input::-webkit-slider-thumb {
+    background-color: #a268ff;
+}
+
+.theme-option input:checked ~ .dark-contrast-checkmark {
+    background-color: #a268ff;
+}
+
+.dark-contrast-editor-container {
+    border: 2px solid #fff;
+}
+
+.dark-contrast-editor-header {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.dark-contrast-output-container {
+    border: 2px solid #fff;
+}
+
+.dark-contrast-output-header {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.dark-contrast-output-area {
+    background-color: rgb(24, 24, 24);
+    color: #fff;
 }
