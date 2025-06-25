@@ -13,7 +13,6 @@ body {
     height: 100vh;
 }
 
-
 h1,
 h2 {
     padding: 0;
@@ -42,6 +41,7 @@ button i {
     font-weight: bold;
     border-radius: 0.3rem;
     margin: 4px 0;
+    min-width: fit-content;
 }
 
 /* Main Header Styles (Top of page) */
@@ -81,6 +81,12 @@ button i {
     padding: 8px 16px;
 
     z-index: 9;
+}
+
+@media only screen and (max-width: 350px) {
+  .menu {
+    width: 100%;
+  }
 }
 
 .open {
@@ -169,7 +175,10 @@ button i {
 }
 
 .menu-header {
-    font-size: 36px;
+    font-size: 42px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .font-input-container {
@@ -182,15 +191,15 @@ button i {
     display: flex;
     flex-direction: column;
     flex: 1;
-    gap: 6px;
+    gap: 10px;
 }
 
 .label {
-    font-size: 24px;
+    font-size: 32px;
 }
 
 .font-output {
-    font-size: 48px;
+    font-size: 64px;
     padding-top: 2px;
 }
 
@@ -347,7 +356,7 @@ label {
     display: flex;
     align-items: center;
     gap: 20px;
-    overflow: hidden;
+    overflow-x: auto;
 
     padding: 4px 8px;
     /* border-bottom: 2px solid #000; */
@@ -356,6 +365,7 @@ label {
 
 .editor-title {
     font-size: 2rem;
+    white-space: nowrap;
 }
 
 .run-btn {
@@ -411,7 +421,7 @@ label {
     display: flex;
     align-items: center;
     gap: 16px;
-    overflow: hidden;
+    overflow-x: auto;
 
     padding: 4px 8px;
     /* border-bottom: 2px solid #000; */
@@ -419,6 +429,7 @@ label {
 
 .output-title {
     font-size: 2rem;
+    white-space: nowrap;
 }
 
 .output-area {
@@ -435,12 +446,16 @@ label {
 
 
 /* Color Themes */
-.light,
+
+/* Doing transition this way makes everything slow */
+/* .light,
 .dark,
 .light-contrast,
 .dark-contrast {
-    /* transition: 0.3s; */
-}
+    transition: 0.3s;
+} */
+
+
 
 
 /* Light Theme */
@@ -592,6 +607,50 @@ label {
 
 .dark-output {
     background-color: rgb(45, 45, 45);
+}
+
+.dark,
+.dark-contrast {
+    .ace_scrollbar::-webkit-scrollbar {
+        width: 18px;
+        height: 14px;
+    }
+
+    .ace_scrollbar::-webkit-scrollbar-track {
+        background-color: #1E1E1E;
+    }
+
+    .ace_scrollbar::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 20px;
+        border-top: 3px solid #1E1E1E;
+        border-bottom: 3px solid #1E1E1E;
+        border-left: 4px solid #1E1E1E;
+        border-right: 4px solid #1E1E1E;
+    }
+
+    .ace_scrollbar::-webkit-scrollbar-thumb:hover {
+        background-color: #aaa;
+    }
+
+}
+
+.dark::-webkit-scrollbar,
+.dark-contrast::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+.dark::-webkit-scrollbar-track,
+.dark-contrast::-webkit-scrollbar-track {
+    background-color: #202020;
+}
+
+.dark::-webkit-scrollbar-thumb,
+.dark-contrast::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 20px;
+    border: 3px solid #1E1E1E;
 }
 
 
