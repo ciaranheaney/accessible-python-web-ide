@@ -15,6 +15,7 @@ const banner = document.getElementById('banner');
 const menu = document.getElementById('menu');
 const editor_container = document.getElementById('editor-container');
 const editor_header = document.getElementById('editor-header');
+const code_container = document.getElementById('code-container');
 const editor_area = document.getElementById('editor');
 const editor_input = document.querySelector('.ace_text-input');
 const ace_scrollbar = document.querySelector('.ace_scrollbar');
@@ -145,25 +146,21 @@ document.addEventListener("click", close_menu);
 
 
 function change_editor_theme(theme) {
-    // Change editor theme
-    console.log(theme);
+    console.log(`Changing editor theme to ${theme}...`);
     editor.setTheme('ace/theme/' + theme);
     editor_theme_input.value = theme;
-    
-    // setTimeout(function() {
-    //     console.log(theme);
-    //     editor.setTheme('ace/theme/' + theme);
-    //     editor_theme_input.value = theme;
-    // }, 75);
 }
 
 function reset_settings() {
+    console.log("Reseting all settings...")
     change_font_size(20);
     editor.setTheme('ace/theme/textmate');
+    editor_theme_input.value = 'textmate';
     set_theme('light');
 }
 
 function set_theme(theme) {
+    console.log(`Changing page theme to ${theme}`)
     const ace_theme = editor.getTheme().split("/").at(-1);
     if ((theme === "light" || theme === "light-contrast") && !light_themes.includes(ace_theme)) {
         change_editor_theme('textmate');
@@ -180,6 +177,7 @@ function set_theme(theme) {
     font_input.classList = [`${theme}-font-input font-input ${theme}`];
     editor_container.classList = [`${theme}-editor-container editor-container ${theme}`];
     editor_header.classList = [`${theme}-editor-header editor-header ${theme}`];
+    code_container.classList = [`${theme}-code-container code-container ${theme}`];
     output_container.classList = [`${theme}-output-container output-container ${theme}`];
     output_header.classList = [`${theme}-output-header output-header ${theme}`];
     output_area.classList = [`${theme}-output-area output-area ${theme}`];
