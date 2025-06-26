@@ -155,39 +155,12 @@
         <textarea class="output-area" id="output-area" aria-live="polite"></textarea>
     </article>
 
-    <!-- <script src="../src/ace.js" type="text/javascript" charset="utf-8"></script> -->
-    <!-- <script src="../src/ext-language_tools.js"></script> -->
-    <!-- <script src="../src/ext-inline_autocomplete.js"></script> -->
+    <!-- Ace Editor Scripts -->
     <script src="../static/ace/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="../static/ace/ext-language_tools.js"></script>
     <script src="../static/ace/ext-inline_autocomplete.js"></script>
-    <script>
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/textmate");
-        editor.session.setMode("ace/mode/python");
 
-        const default_code = `
-# Python Web IDE - Accessibility settings in menu
-
-def sum(a, b):
-    return (a + b)
-
-a = int(input('Enter 1st number: '))
-b = int(input('Enter 2nd number: '))
-
-print(f'Sum of {a} and {b} is {sum(a, b)}')
-`
-
-        editor.setValue(default_code, -1);
-        
-        editor.setOptions({
-            enableBasicAutocompletion: true,
-            enableInlineAutocompletion: true,
-            enableSnippets: false,
-            enableLiveAutocompletion: true
-        });
-
-    </script>
+    <!-- Main JS file -->
     <script src="../static/script.js"></script>
 
 </body>

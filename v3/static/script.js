@@ -185,3 +185,29 @@ function set_theme(theme) {
 
     document.getElementById(`${theme}-theme`).checked = "checked";
 }
+
+// Scripts for setting up Ace editor
+var editor = ace.edit("editor");
+editor.setTheme("ace/theme/textmate");
+editor.session.setMode("ace/mode/python");
+
+const default_code = `
+# Python Web IDE - Accessibility settings in menu
+
+def sum(a, b):
+return (a + b)
+
+a = int(input('Enter 1st number: '))
+b = int(input('Enter 2nd number: '))
+
+print(f'Sum of {a} and {b} is {sum(a, b)}')
+`
+
+editor.setValue(default_code, -1);
+
+editor.setOptions({
+    enableBasicAutocompletion: true,
+    enableInlineAutocompletion: true,
+    enableSnippets: false,
+    enableLiveAutocompletion: true
+});
