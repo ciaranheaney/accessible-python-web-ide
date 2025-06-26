@@ -476,6 +476,7 @@ label {
 .light-menu-btn {
     background-color: rgb(32, 108, 179);
     color: #fff;
+    border: 2px solid rgb(32, 108, 179);
 }
 
 .light-menu-btn:hover,
@@ -487,6 +488,7 @@ label {
 .light-reset-btn {
     background-color: rgb(11, 70, 124);
     color: #fff;
+    border: 2px solid rgb(11, 70, 124);
 }
 
 .light-close-menu-btn:hover,
@@ -548,6 +550,7 @@ label {
 .dark-menu-btn {
     background-color: #303030;
     color: #fff;
+    border: 2px solid #303030;
 }
 
 .dark-menu-btn:hover,
@@ -559,6 +562,7 @@ label {
 .dark-reset-btn {
     background-color: #353535;
     color: #fff;
+    border: 2px solid #353535;
 }
 
 .dark-close-menu-btn:hover,
