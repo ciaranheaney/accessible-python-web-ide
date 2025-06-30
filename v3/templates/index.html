@@ -142,18 +142,32 @@
         </div>
     </main>
 
-    <article class="light-output-container output-container" id="output-container">
-        <header class="light-output-header output-header" id="output-header">
-            <h2 class="output-title">
-                <label for="output-area">Output Terminal</label>
-            </h2>
-            <button class="btn clear-btn" id="clear-output-btn" onclick="clear_output()">
-                <i class="fas fa-eraser"></i>
-                <label for="clear-output-btn">Clear Output</label>
-            </button>
-        </header>
-        <textarea class="output-area" id="output-area" aria-live="polite"></textarea>
-    </article>
+    <div class="bottom-area">
+        <article class="light-input-container input-container" id="input-container">
+            <header class="light-input-header input-header" id="input-header">
+                <h2 class="input-title">
+                    <label for="input-area">Inputs</label>
+                </h2>
+                <button class="btn clear-btn" id="clear-input-btn" onclick="clear_input()">
+                    <i class="fas fa-eraser"></i>
+                    <label for="clear-input-btn">Clear Inputs</label>
+                </button>
+            </header>
+            <textarea class="input-area" id="input-area"></textarea>
+        </article>
+        <article class="light-output-container output-container" id="output-container">
+            <header class="light-output-header output-header" id="output-header">
+                <h2 class="output-title">
+                    <label for="output-area">Output</label>
+                </h2>
+                <button class="btn clear-btn" id="clear-output-btn" onclick="clear_output()">
+                    <i class="fas fa-eraser"></i>
+                    <label for="clear-output-btn">Clear Output</label>
+                </button>
+            </header>
+            <textarea class="output-area" id="output-area" aria-live="polite" readonly></textarea>
+        </article>
+    </div>
 
     <!-- Ace Editor Scripts -->
     <script src="../static/ace/ace.js" type="text/javascript" charset="utf-8"></script>

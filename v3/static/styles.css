@@ -13,6 +13,13 @@ body {
     height: 100vh;
 }
 
+/* FIX FOR MOBILE SCREENS */
+/* @media only screen and (max-width: 657px) {
+  body {
+    height: min-content;
+  }
+} */
+
 h1,
 h2 {
     padding: 0;
@@ -404,17 +411,56 @@ label {
 
 
 /* Output Terminal Styles */
-.output-container {
+.bottom-area {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
 
     height: 33%;
     min-height: 140px;
 
     margin: 0px 20px 20px 20px;
-    /* border: 2px solid #000; */
     border-radius: 0.5rem;
     overflow: hidden;
+}
+
+.output-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    height: 100%;
+    min-height: 140px;
+    min-width: 305px;
+
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 292px;
+    height: 100%;
+    min-height: 140px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.input-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    overflow-x: auto;
+
+    padding: 4px 8px;
+}
+
+.input-title {
+    font-size: 2rem;
+    white-space: nowrap;
 }
 
 .output-header {
@@ -424,12 +470,22 @@ label {
     overflow-x: auto;
 
     padding: 4px 8px;
-    /* border-bottom: 2px solid #000; */
 }
 
 .output-title {
     font-size: 2rem;
     white-space: nowrap;
+}
+
+.input-area {
+    flex: 1;
+    height: 100%;
+    resize: none;
+    font-size: 20px;
+
+    padding: 4px 10px;
+    border: none;
+    outline: none;
 }
 
 .output-area {
@@ -438,7 +494,7 @@ label {
     resize: none;
     font-size: 20px;
 
-    padding: 10px;
+    padding: 4px 10px;
     border: none;
     outline: none;
 }
@@ -518,17 +574,21 @@ label {
     border-bottom: 2px solid #000;
 }
 
-.light-output-container {
+.light-output-container,
+.light-input-container {
     border: 2px solid #000;
 }
 
-.light-output-header {
+.light-output-header,
+.light-input-header {
     border-bottom: 2px solid #000;
 }
 
-.light-output-area {
+.light-output-area,
+.light-input-area {
     background-color: #fff;
 }
+
 
 
 
@@ -594,17 +654,20 @@ label {
     border-bottom: 2px solid #000;
 }
 
-.dark-output-container {
+.dark-output-container,
+.dark-input-container {
     border: 2px solid #000;
 }
 
-.dark-output-header {
+.dark-output-header,
+.dark-input-header {
     background-color: #202020;
     color: #fff;
     border-bottom: 2px solid #000;
 }
 
-.dark-output-area {
+.dark-output-area,
+.dark-input-area {
     background-color: rgb(24, 24, 24);
     color: #fff;
 }
@@ -718,15 +781,18 @@ label {
     border-bottom: 2px solid #000;
 }
 
-.light-contrast-output-container {
+.light-contrast-output-container,
+.light-contrast-input-container {
     border: 2px solid #000;
 }
 
-.light-contrast-output-header {
+.light-contrast-output-header,
+.light-contrast-input-header {
     border-bottom: 2px solid #000;
 }
 
-.light-contrast-output-area {
+.light-contrast-output-area,
+.light-contrast-input-area {
     background-color: #fff;
 }
 
@@ -794,16 +860,19 @@ label {
     border-bottom: 2px solid #fff;
 }
 
-.dark-contrast-output-container {
+.dark-contrast-output-container,
+.dark-contrast-input-container {
     border: 2px solid #fff;
 }
 
-.dark-contrast-output-header {
+.dark-contrast-output-header,
+.dark-contrast-input-header {
     color: #fff;
     border-bottom: 2px solid #fff;
 }
 
-.dark-contrast-output-area {
+.dark-contrast-output-area,
+.dark-contrast-input-area {
     background-color: rgb(24, 24, 24);
     color: #fff;
 }
