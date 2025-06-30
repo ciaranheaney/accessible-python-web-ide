@@ -1,11 +1,27 @@
 from flask import Flask, request, render_template, jsonify
-import subprocess
-import tempfile
+import requests
+import time
 import os
-import sys
 
 
 app = Flask(__name__)
+
+JUDGE0_URL = "https://judge0-ce.p.rapidapi.com"
+RAPIDAPI_KEY = "aa32f181a6mshbb21d201dc72ca3p1e8658jsne9f8b47564b0"
+
+HEADERS = {
+    "Content-Type": "application/json",
+    "X-RapidAPI-Key": RAPIDAPI_KEY,
+    "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com"
+}
+
+PYTHON_LANGUAGE_ID = 71     # Found at https://ce.judge0.com/languages (Python 3.8.1)
+
+MEMORY_LIMIT = 64000  # 64kb
+CPU_TIME_LIMIT = 2  # 1sec
+CPU_EXTRA_TIME = 0.5
+WALL_TIME_LIMIT = 5
+WRITE_LIMIT = 512  # 512bytes
 
 @app.route("/")
 def index():
@@ -16,44 +32,97 @@ def index():
 def run_code():
     data = request.json
     code = data.get("code", "")
-    # user_input = data.get("input", "")
+    user_input = data.get("input", "")
 
-    # try:
-    #     with tempfile.NamedTemporaryFile(mode="w+", suffix=".py", delete=False) as tmp:
-    #         tmp.write(code)
-    #         tmp.flush()
-    #         result = subprocess.run(
-    #             ["python3", tmp.name],
-    #             stdout=subprocess.PIPE,
-    #             stderr=subprocess.PIPE,
-    #             timeout=5
-    #         )
-    #     output = result.stdout.decode() + result.stderr.decode()
-    # except subprocess.TimeoutExpired:
-    #     output = "Error: Code execution timed out."
-
-
-    # Run a subprocess of the sandbox and pass the code as a parameter
-    proc = subprocess.Popen(
-        [sys.executable, "./sandbox.py", code],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        env={
-            "PATH": os.environ.get("PATH"),
-        },
+    submission_response = requests.post(
+        f"{JUDGE0_URL}/submissions?base64_encoded=false&wait=false",
+        json = {
+            "source_code": code, 
+            "language_id": PYTHON_LANGUAGE_ID,
+            "stdin": user_input,
+            "cpu_time_limit": CPU_TIME_LIMIT,
+            "cpu_extra_time": CPU_EXTRA_TIME,
+            "wall_time_limit": WALL_TIME_LIMIT,
+            "memory_limit": MEMORY_LIMIT,
+            "enable_per_process_and_thread_time_limit": True,
+            "enable_per_process_and_thread_memory_limit": True,
+            "redirect_stderr_to_stdout": True,
+            "enable_network": False,
+            "number_of_runs": 1
+            },
+        headers = HEADERS
     )
 
-    extra = ""
-    try:
-        stdout, stderr = proc.communicate(code, timeout=5)
-    except subprocess.TimeoutExpired:
-        extra = "process timed out"
-        proc.kill()
-        stdout, stderr = proc.communicate()
+    token = submission_response.json().get("token")
 
-    output = stdout.decode() + stderr.decode() + extra
+    while True:
+        result_response = requests.get(
+            f"{JUDGE0_URL}/submissions/{token}?base64_encoded=false",
+            headers = HEADERS
+        )
+        result = result_response.json()
+        if result["status"]["id"] >= 3:
+            break
+        time.sleep(1)
 
-    return jsonify({"output": output})
+    print(result)
+
+    return jsonify({
+        "stdout": result["stdout"],
+        "stderr": result["stderr"],
+        "time": result["time"],
+        "memory": result["memory"],
+        "token": result["token"],
+        "compile_output": result["compile_output"],
+        "message": result["message"],
+        "status": {
+            "id": result["status"]["id"],
+            "description": result["status"]["description"]
+        }
+    })
+
+
+
+
+
+
+
+
+    # NOT CURRENT
+    # result = subprocess.run(
+    #     ['python3', '-c', code],
+    #     input = user_input,
+    #     capture_output=True, 
+    # )
+
+    # output = result.stdout.decode() + result.stderr.decode()
+    # return jsonify({"output": output})
+
+
+    # CURRENT IN USE
+    # proc = subprocess.run(
+    #     [sys.executable, "./sandbox.py", code, user_input],
+    #     stdout=subprocess.PIPE,
+    #     stderr=subprocess.PIPE,
+    #     env={
+    #         "PATH": os.environ.get("PATH"),
+    #     },
+    # )
+
+    # NOT CURRENT
+    # extra = ""
+    # try:
+    #     stdout, stderr = proc.communicate(code, timeout=5)
+    # except subprocess.TimeoutExpired:
+    #     extra = "process timed out"
+    #     proc.kill()
+    #     stdout, stderr = proc.communicate()
+
+    # output = proc.stdout.decode() + proc.stderr.decode()
+
+    # return jsonify({"output": output})
+
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    # app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
