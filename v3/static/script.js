@@ -1,9 +1,36 @@
 
+// Scripts for setting up Ace editor
+var editor = ace.edit("editor");
+editor.setTheme("ace/theme/textmate");
+editor.session.setMode("ace/mode/python");
+
+const default_code = `
+# Python Web IDE - Accessibility settings in menu
+
+def sum(a, b):
+    return (a + b)
+
+a = int(input('Enter 1st number: '))
+b = int(input('Enter 2nd number: '))
+
+print(f'Sum of {a} and {b} is {sum(a, b)}')
+`
+
+editor.setValue(default_code, -1);
+
+editor.setOptions({
+    enableBasicAutocompletion: true,
+    enableInlineAutocompletion: true,
+    enableSnippets: false,
+    enableLiveAutocompletion: true
+});
+
 // Buttons
 const menu_button = document.getElementById('menu-btn');
 const hide_menu_button = document.getElementById('close-menu-btn');
 const run_button = document.getElementById('run-btn');
 const clear_code_button = document.getElementById('clear-code-btn');
+const clear_input_button = document.getElementById('clear-input-btn');
 const clear_output_button = document.getElementById('clear-output-btn');
 const reset_button = document.getElementById('reset-btn');
 const font_input = document.getElementById('font-input');
@@ -19,6 +46,9 @@ const code_container = document.getElementById('code-container');
 const editor_area = document.getElementById('editor');
 const editor_input = document.querySelector('.ace_text-input');
 const ace_scrollbar = document.querySelector('.ace_scrollbar');
+const input_container = document.getElementById('input-container');
+const input_header = document.getElementById('input-header');
+const input_area = document.getElementById('input-area');
 const output_container = document.getElementById('output-container');
 const output_header = document.getElementById('output-header');
 const output_area = document.getElementById('output-area');
@@ -43,40 +73,70 @@ const dark_themes = [
 ]
 
 async function run_code() {
+    console.log("[RUN] button pressed...")
     const code = editor.getValue();
-    console.log(code)
+    const input = input_area.value
+
+    if (!code.trim()) {
+        console.log("[ERROR] Cannot run empty code...")
+        output_area.value = "ERROR: Cannot run empty code...";
+        return
+    }
+
+    console.log("[SENDING] code to server...")
+
+    if (input.trim()) {
+        console.log("[SENDING] input to server...")
+    }
 
     const response = await fetch("/run", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code })
+        body: JSON.stringify({ 
+            "input": input,
+            "code": code
+         })
     });
 
     const data = await response.json();
-    output_area.value = data.output;
-    console.log(data.output);
+    console.log("[RECIEVED] data from server...")
+    console.log(data)
+    output_area.value = data.stdout;
+    console.log(`[OUTPUT]:\n${data.stdout}`);
+
 }
 
 function clear_code() {
     if(confirm("\n**WARNING**\n\nThis action will delete your code and make it unrecoverable.\nAre you sure you want to clear the code window?")) {
+        console.log("[CLEAR] code editor...")
         editor.setValue("");
         editor.focus();
     }
 }
 
 function clear_output() {
+    console.log("[CLEAR] output...")
     output_area.value = "";
     editor.focus();
 }
 
+function clear_input() {
+    console.log("[CLEAR] input...")
+    input_area.value = "";
+    input_area.focus();
+}
+
 function show_menu() {
+    console.log("[OPEN] side menu...")
     menu.classList.add('open');
     overlay.style.display = 'block';
 
     menu_button.tabIndex = '-1';
     run_button.tabIndex = '-1';
     clear_code_button.tabIndex = '-1';
+    clear_input_button.tabIndex = '-1';
     clear_output_button.tabIndex = '-1';
+    input_area.tabIndex = '-1';
     output_area.tabIndex = '-1';
     editor_input.tabIndex = '-1';
     ace_scrollbar.tabIndex = '-1';
@@ -92,6 +152,7 @@ function show_menu() {
 }
 
 function hide_menu() {
+    console.log("[CLOSE] side menu...")
     menu.classList.remove('open');
     overlay.style.display = 'none';
 
@@ -104,7 +165,9 @@ function hide_menu() {
     menu_button.tabIndex = '0';
     run_button.tabIndex = '0';
     clear_code_button.tabIndex = '0';
+    clear_input_button.tabIndex = '0';
     clear_output_button.tabIndex = '0';
+    input_area.tabIndex = '0';
     output_area.tabIndex = '0';
     editor_input.tabIndex = '0';
     ace_scrollbar.tabIndex = '0';
@@ -112,7 +175,9 @@ function hide_menu() {
 
 
 function change_font_size(font_size) {
+    console.log(`[CHANGE] font size to ${font_size}px...`)
     editor_area.style.fontSize = `${font_size}px`;
+    input_area.style.fontSize = `${font_size}px`;
     output_area.style.fontSize = `${font_size}px`;
     font_size_output.value = font_size;
 }
@@ -123,6 +188,7 @@ function close_menu(event) {
     if (menu.classList.contains('open')) {
         var mouseClickWidth = event.clientX;
         if (window.innerWidth - mouseClickWidth >= menu.offsetWidth){
+            console.log("[CLOSE] side menu...")
             menu.classList.remove('open');
             overlay.style.display = 'none';
             hide_menu_button.tabIndex = '-1';
@@ -134,7 +200,9 @@ function close_menu(event) {
             menu_button.tabIndex = '0';
             run_button.tabIndex = '0';
             clear_code_button.tabIndex = '0';
+            clear_input_button.tabIndex = '0';
             clear_output_button.tabIndex = '0';
+            input_area.tabIndex = '0';
             output_area.tabIndex = '0';
             editor_input.tabIndex = '0';
             ace_scrollbar.tabIndex = '0';
@@ -146,13 +214,13 @@ document.addEventListener("click", close_menu);
 
 
 function change_editor_theme(theme) {
-    console.log(`Changing editor theme to ${theme}...`);
+    console.log(`[SET] editor theme to ${theme}...`)
     editor.setTheme('ace/theme/' + theme);
     editor_theme_input.value = theme;
 }
 
 function reset_settings() {
-    console.log("Reseting all settings...")
+    console.log("[RESET] to default settings...")
     change_font_size(20);
     editor.setTheme('ace/theme/textmate');
     editor_theme_input.value = 'textmate';
@@ -160,7 +228,7 @@ function reset_settings() {
 }
 
 function set_theme(theme) {
-    console.log(`Changing page theme to ${theme}`)
+    console.log(`[SET] page theme to ${theme}...`)
     const ace_theme = editor.getTheme().split("/").at(-1);
     if ((theme === "light" || theme === "light-contrast") && !light_themes.includes(ace_theme)) {
         change_editor_theme('textmate');
@@ -181,33 +249,10 @@ function set_theme(theme) {
     output_container.classList = [`${theme}-output-container output-container ${theme}`];
     output_header.classList = [`${theme}-output-header output-header ${theme}`];
     output_area.classList = [`${theme}-output-area output-area ${theme}`];
+    input_container.classList = [`${theme}-input-container input-container ${theme}`];
+    input_header.classList = [`${theme}-input-header input-header ${theme}`];
+    input_area.classList = [`${theme}-input-area input-area ${theme}`];
     document.querySelectorAll('span.checkmark').forEach(checkmark => checkmark.classList = [`${theme}-checkmark checkmark`]);
 
     document.getElementById(`${theme}-theme`).checked = "checked";
 }
-
-// Scripts for setting up Ace editor
-var editor = ace.edit("editor");
-editor.setTheme("ace/theme/textmate");
-editor.session.setMode("ace/mode/python");
-
-const default_code = `
-# Python Web IDE - Accessibility settings in menu
-
-def sum(a, b):
-return (a + b)
-
-a = int(input('Enter 1st number: '))
-b = int(input('Enter 2nd number: '))
-
-print(f'Sum of {a} and {b} is {sum(a, b)}')
-`
-
-editor.setValue(default_code, -1);
-
-editor.setOptions({
-    enableBasicAutocompletion: true,
-    enableInlineAutocompletion: true,
-    enableSnippets: false,
-    enableLiveAutocompletion: true
-});
