@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">  
-    <!-- <script src="../static/script.js"></script> -->
     <title>Python Web IDE</title>
 </head>
 <body class="light-body" onload="document.querySelector('h1.title').focus();">
     <header class="light-banner header-container" id="banner">
-        <h1 class="title">Python Web IDE</h1>
+        <h1 class="title">Python Web <abbr title="Integrated Development Environment" aria-label="Integrated Development Environment">IDE</abbr></h1>
         <button class="light-menu-btn menu-btn" id="menu-btn" onclick="show_menu()">
             <label for="menu-btn">Menu</label>
             <i class="fas fa-bars" style="font-size: 32px"></i>
@@ -39,7 +38,8 @@
             </div>
             <output class="font-output" id="font-size-output">20</output>
         </div>
-        <div>
+
+        <!-- <div>
             <label for="page-theme" class="label">Website Theme</label>
             <div class="page-theme" id="page-theme">
                 <label class="theme-option" for="light-theme">Light
@@ -59,7 +59,33 @@
                     <span class="dark-contrast-checkmark checkmark"></span>
                 </label>
             </div>
-        </div>
+        </div> -->
+
+        <!-- USING FIELDSET/LEGEND elements (better semantic coding) -->
+        <fieldset>
+            <legend>
+                <label for="page-theme"  class="label">Website Theme</label>
+            </legend>
+            <div class="page-theme" id="page-theme">
+                <label class="theme-option" for="light-theme">Light
+                    <input type="radio" id="light-theme" name="theme" value="Light" onclick="set_theme('light')" checked="checked" tabindex="-1">
+                    <span class="light-checkmark checkmark"></span>
+                </label>
+                <label class="theme-option" for="light-contrast-theme">Light Contrast
+                    <input type="radio" id="light-contrast-theme" name="theme" value="Light Contrast" onclick="set_theme('light-contrast')" tabindex="-1">
+                    <span class="light-contrast-checkmark checkmark"></span>
+                </label>
+                <label class="theme-option" for="dark-theme">Dark
+                    <input type="radio" id="dark-theme" name="theme" value="Dark" onclick="set_theme('dark')" tabindex="-1">
+                    <span class="light-checkmark checkmark"></span>
+                </label>
+                <label class="theme-option" for="dark-contrast-theme">Dark Contrast
+                    <input type="radio" id="dark-contrast-theme" name="theme" value="Dark Contrast" onclick="set_theme('dark-contrast')" tabindex="-1">
+                    <span class="dark-contrast-checkmark checkmark"></span>
+                </label>
+            </div>
+        </fieldset>
+        
 
         <div class="editor-theme">
             <label for="editor-theme" class="label">Editor Theme</label>
@@ -124,11 +150,11 @@
     <div id="overlay"></div>
 
     <main class="light-editor-container editor-container" id="editor-container">
-        <header class="light-editor-header editor-header" id="editor-header">
+        <div class="light-editor-header editor-header" id="editor-header">
             <h2 class="editor-title" id="editor-title">
                 <label for="ace_text-input">Code Editor</label>
             </h2>
-            <button class="btn run-btn" id="run-btn" onclick="run_code()">
+            <button class="btn run-btn" id="run-btn" onclick="run_code()" aria-controls="output-area">
                 <i class="fas fa-play"></i>
                 <label for="run-btn">Run Code</label>
             </button>
@@ -136,15 +162,13 @@
                 <i class="fas fa-eraser"></i>
                 <label for="clear-code-btn">Clear Code</label>
             </button>
-        </header>
-        <div class="code-container" id="code-container">
-            <pre id="editor" aria-labelledby="editor-title"></pre>
         </div>
+        <div class="code-container" id="editor" aria-labelledby="editor-title"></div>
     </main>
 
-    <div class="bottom-area">
-        <article class="light-input-container input-container" id="input-container">
-            <header class="light-input-header input-header" id="input-header">
+    <section class="bottom-area">
+        <div class="light-input-container input-container" id="input-container">
+            <div class="light-input-header input-header" id="input-header">
                 <h2 class="input-title">
                     <label for="input-area">Inputs</label>
                 </h2>
@@ -152,11 +176,11 @@
                     <i class="fas fa-eraser"></i>
                     <label for="clear-input-btn">Clear Inputs</label>
                 </button>
-            </header>
+            </div>
             <textarea class="input-area" id="input-area"></textarea>
-        </article>
-        <article class="light-output-container output-container" id="output-container">
-            <header class="light-output-header output-header" id="output-header">
+        </div>
+        <div class="light-output-container output-container" id="output-container">
+            <div class="light-output-header output-header" id="output-header">
                 <h2 class="output-title">
                     <label for="output-area">Output</label>
                 </h2>
@@ -164,10 +188,10 @@
                     <i class="fas fa-eraser"></i>
                     <label for="clear-output-btn">Clear Output</label>
                 </button>
-            </header>
-            <textarea class="output-area" id="output-area" aria-live="polite" readonly></textarea>
-        </article>
-    </div>
+            </div>
+            <textarea class="output-area" id="output-area" aria-live="polite" readonly tabindex="-1"></textarea>
+        </div>
+    </section>
 
     <!-- Ace Editor Scripts -->
     <script src="../static/ace/ace.js" type="text/javascript" charset="utf-8"></script>

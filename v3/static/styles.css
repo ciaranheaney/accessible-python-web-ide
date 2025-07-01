@@ -2,6 +2,7 @@
 
 * {
     box-sizing: border-box;
+    /* filter: blur(1px); */
 }
 
 body {
@@ -44,11 +45,21 @@ button i {
 .btn {
     height: 40px;
     padding: 0px 12px 0px 12px;
-    font-size: 18px;
+    /* font-size: 18px; */
+    font-size: 1.25rem;
     font-weight: bold;
     border-radius: 0.3rem;
     margin: 4px 0;
     min-width: fit-content;
+}
+
+fieldset {
+    padding-block: 0em 0.5em;
+    padding-inline: 0.5em;
+}
+
+abbr {
+    text-decoration: none;
 }
 
 /* Main Header Styles (Top of page) */
@@ -70,7 +81,7 @@ button i {
 }
 
 .menu {
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 24px;
 
@@ -111,7 +122,8 @@ button i {
 }
 
 .menu-btn {
-    font-size: 24px;
+    /* font-size: 24px; */
+    font-size: 2rem;
     font-weight: 600;
     /* background-color: rgb(32, 108, 179); */
     /* color: #fff; */
@@ -136,7 +148,8 @@ button i {
 }
 
 .close-menu-btn {
-    font-size: 24px;
+    /* font-size: 24px; */
+    font-size: 2rem;
     font-weight: 600;
 
     /* background: rgb(11, 70, 124); */
@@ -159,7 +172,8 @@ button i {
 }
 
 .reset-btn {
-    font-size: 24px;
+    /* font-size: 24px; */
+    font-size: 2rem;
     font-weight: 600;
 
     /* background: rgb(11, 70, 124); */
@@ -182,7 +196,8 @@ button i {
 }
 
 .menu-header {
-    font-size: 42px;
+    /* font-size: 42px; */
+    font-size: 2.5rem;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -202,11 +217,13 @@ button i {
 }
 
 .label {
-    font-size: 32px;
+    /* font-size: 32px; */
+    font-size: 2rem;
 }
 
 .font-output {
-    font-size: 64px;
+    /* font-size: 64px; */
+    font-size: 4rem;
     padding-top: 2px;
 }
 
@@ -257,7 +274,8 @@ button i {
     position: relative;
     padding-left: 30px;
     cursor: pointer;
-    font-size: 20px;
+    /* font-size: 20px; */
+    font-size: 1.25rem;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -272,7 +290,7 @@ button i {
 }
 
 .theme-option {
-    margin-left: 24px;
+    margin-left: 16px;
 
     input {
     position: absolute;
@@ -318,7 +336,8 @@ button i {
 
 .editor-theme-select {
     width: 100%;
-    font-size: 20px;
+    /* font-size: 20px; */
+    font-size: 1.25rem;
 }
 
 select {
@@ -397,16 +416,12 @@ label {
     flex: 1;
     display: flex;
     flex-direction: column;
-}
 
-#editor {
     margin: 0;
     width: 100%;
     z-index: 1;
     font-size: 20px;
-    flex: 1;
 }
-
 
 
 
@@ -442,7 +457,7 @@ label {
     display: flex;
     flex-direction: column;
 
-    width: 292px;
+    width: 305px;
     height: 100%;
     min-height: 140px;
     border-radius: 0.5rem;

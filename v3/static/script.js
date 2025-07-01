@@ -7,22 +7,18 @@ editor.session.setMode("ace/mode/python");
 const default_code = `
 # Python Web IDE - Accessibility settings in menu
 
-def sum(a, b):
-    return (a + b)
+# Write code here...
 
-a = int(input('Enter 1st number: '))
-b = int(input('Enter 2nd number: '))
 
-print(f'Sum of {a} and {b} is {sum(a, b)}')
 `
 
 editor.setValue(default_code, -1);
 
 editor.setOptions({
-    enableBasicAutocompletion: true,
-    enableInlineAutocompletion: true,
+    enableBasicAutocompletion: false,
+    enableInlineAutocompletion: false,
     enableSnippets: false,
-    enableLiveAutocompletion: true
+    enableLiveAutocompletion: false
 });
 
 // Buttons
@@ -117,7 +113,7 @@ function clear_code() {
 function clear_output() {
     console.log("[CLEAR] output...")
     output_area.value = "";
-    editor.focus();
+    // editor.focus();
 }
 
 function clear_input() {
@@ -131,13 +127,15 @@ function show_menu() {
     menu.classList.add('open');
     overlay.style.display = 'block';
 
+    menu.style.display = 'flex';
+
     menu_button.tabIndex = '-1';
     run_button.tabIndex = '-1';
     clear_code_button.tabIndex = '-1';
     clear_input_button.tabIndex = '-1';
     clear_output_button.tabIndex = '-1';
     input_area.tabIndex = '-1';
-    output_area.tabIndex = '-1';
+    // output_area.tabIndex = '-1';
     editor_input.tabIndex = '-1';
     ace_scrollbar.tabIndex = '-1';
 
@@ -156,6 +154,8 @@ function hide_menu() {
     menu.classList.remove('open');
     overlay.style.display = 'none';
 
+    menu.style.display = 'none';
+
     hide_menu_button.tabIndex = '-1';
     reset_button.tabIndex = '-1';
     font_input.tabIndex = '-1';
@@ -168,7 +168,7 @@ function hide_menu() {
     clear_input_button.tabIndex = '0';
     clear_output_button.tabIndex = '0';
     input_area.tabIndex = '0';
-    output_area.tabIndex = '0';
+    // output_area.tabIndex = '0';
     editor_input.tabIndex = '0';
     ace_scrollbar.tabIndex = '0';
 }
@@ -191,6 +191,9 @@ function close_menu(event) {
             console.log("[CLOSE] side menu...")
             menu.classList.remove('open');
             overlay.style.display = 'none';
+
+            menu.style.display = 'none';
+
             hide_menu_button.tabIndex = '-1';
             reset_button.tabIndex = '-1';
             font_input.tabIndex = '-1';
@@ -203,7 +206,7 @@ function close_menu(event) {
             clear_input_button.tabIndex = '0';
             clear_output_button.tabIndex = '0';
             input_area.tabIndex = '0';
-            output_area.tabIndex = '0';
+            // output_area.tabIndex = '0';
             editor_input.tabIndex = '0';
             ace_scrollbar.tabIndex = '0';
         }
@@ -256,3 +259,18 @@ function set_theme(theme) {
 
     document.getElementById(`${theme}-theme`).checked = "checked";
 }
+
+
+function escape_editor(event) {
+    if (event.ctrlKey && event.key === 'Tab') {
+        console.log("ESCAPE");
+        event.preventDefault();
+    }
+}
+document.addEventListener("keydown", function(event) {
+    if (event.key === 'Escape' && document.activeElement.id === 'ace_text-input') {
+        console.log("[ESCAPE] text editor");
+        event.preventDefault();
+        clear_input_button.focus();
+    }
+});
