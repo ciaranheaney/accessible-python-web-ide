@@ -3,9 +3,9 @@ import requests
 import time
 import os
 
-
 app = Flask(__name__)
 
+# Current plan (free) provides 50 submissions per day
 JUDGE0_URL = "https://judge0-ce.p.rapidapi.com"
 RAPIDAPI_KEY = "aa32f181a6mshbb21d201dc72ca3p1e8658jsne9f8b47564b0"
 
@@ -21,7 +21,6 @@ MEMORY_LIMIT = 64000  # 64kb
 CPU_TIME_LIMIT = 2  # 1sec
 CPU_EXTRA_TIME = 0.5
 WALL_TIME_LIMIT = 5
-WRITE_LIMIT = 512  # 512bytes
 
 @app.route("/")
 def index():
