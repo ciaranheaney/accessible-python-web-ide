@@ -744,6 +744,7 @@ label {
 .light-contrast-banner {
     background-color: #fff;
     color: #000;
+    border-bottom: 2px solid #000;
 }
 
 .light-contrast-menu {
