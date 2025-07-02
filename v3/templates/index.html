@@ -10,7 +10,7 @@
 <body class="light-body" onload="document.querySelector('h1.title').focus();">
     <header class="light-banner header-container" id="banner">
         <h1 class="title">Python Web <abbr title="Integrated Development Environment" aria-label="Integrated Development Environment">IDE</abbr></h1>
-        <button class="light-menu-btn menu-btn" id="menu-btn" onclick="show_menu()">
+        <button class="light-menu-btn menu-btn" id="menu-btn" onclick="show_menu()" aria-label="open menu">
             <label for="menu-btn">Menu</label>
             <i class="fas fa-bars" style="font-size: 32px"></i>
         </button>
@@ -19,11 +19,11 @@
     <aside class="light-menu menu" id="menu">
         <div class="menu-header">
             <div class="menu-top-btns">
-                <button class="light-close-menu-btn close-menu-btn" id="close-menu-btn" onclick="hide_menu()" tabindex="-1">
+                <button class="light-close-menu-btn close-menu-btn" id="close-menu-btn" onclick="hide_menu()" tabindex="-1" aria-label="hide menu">
                     <label for="close-menu-btn">Hide</label>
                     <i class="fas fa-times" style="font-size: 32px;"></i>
                 </button>
-                <button class="light-reset-btn reset-btn" id="reset-btn" onclick="reset_settings()" tabindex="-1">
+                <button class="light-reset-btn reset-btn" id="reset-btn" onclick="reset_settings()" tabindex="-1" aria-label="reset settings">
                     <label for="reset-btn">Reset</label>
                     <i class="fas fa-redo" style="font-size: 32px;"></i>
                 </button>
