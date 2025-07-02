@@ -248,7 +248,7 @@ function set_theme(theme) {
     font_input.classList = [`${theme}-font-input font-input ${theme}`];
     editor_container.classList = [`${theme}-editor-container editor-container ${theme}`];
     editor_header.classList = [`${theme}-editor-header editor-header ${theme}`];
-    code_container.classList = [`${theme}-code-container code-container ${theme}`];
+    // code_container.classList = [`${theme}-code-container code-container ${theme}`];
     output_container.classList = [`${theme}-output-container output-container ${theme}`];
     output_header.classList = [`${theme}-output-header output-header ${theme}`];
     output_area.classList = [`${theme}-output-area output-area ${theme}`];
@@ -271,6 +271,6 @@ document.addEventListener("keydown", function(event) {
     if (event.key === 'Escape' && document.activeElement.id === 'ace_text-input') {
         console.log("[ESCAPE] text editor");
         event.preventDefault();
-        clear_input_button.focus();
+        run_button.focus();
     }
 });
