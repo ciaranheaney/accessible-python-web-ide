@@ -271,6 +271,7 @@ document.addEventListener("keydown", function(event) {
     if (event.key === 'Escape' && document.activeElement.id === 'ace_text-input') {
         console.log("[ESCAPE] text editor");
         event.preventDefault();
-        run_button.focus();
+        // run_button.focus();
+        clear_input_button.focus();
     }
 });
