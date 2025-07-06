@@ -435,7 +435,7 @@ ul {
 }
 
 .run-btn {
-    background: #0ece74;
+    background-color: #0ece74;
     border: 2px outset #0ece74;
     color: #000;
     transition: 0.4s;
@@ -445,6 +445,19 @@ ul {
     background: #fff;
     color: #000;
     border: 2px outset #000;
+}
+
+.stop-btn {
+    background-color: #b60000;
+    border: 2px outset #b60000;
+    color: #fff;
+    transform: 0.4s;
+}
+
+.stop-btn:hover {
+    background-color: #fff;
+    color: #b60000;
+    border: 2px outset #b60000;
 }
 
 .clear-btn:hover {

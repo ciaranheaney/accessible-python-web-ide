@@ -25,6 +25,8 @@ editor.setOptions({
 const menu_button = document.getElementById('menu-btn');
 const hide_menu_button = document.getElementById('close-menu-btn');
 const run_button = document.getElementById('run-btn');
+const run_button_icon = document.getElementById('run-btn-icon');
+const run_button_label = document.getElementById('run-btn-lbl');
 const clear_code_button = document.getElementById('clear-code-btn');
 const clear_input_button = document.getElementById('clear-input-btn');
 const clear_output_button = document.getElementById('clear-output-btn');
@@ -94,13 +96,30 @@ async function run_code() {
          })
     });
 
+    run_button.classList = ['btn stop-btn'];
+    run_button_label.textContent = 'Stop Code';
+    run_button_icon.classList = ['fas fa-stop'];
+    const stop_button = document.querySelector('#run-btn.stop-btn');
+
+    stop_button.addEventListener('click', function(event) {
+        if (run_button.classList.contains('stop-btn')) {
+            console.log('[STOPPED] code execution...')
+        }
+    });
+
     const data = await response.json();
     console.log("[RECIEVED] data from server...")
     console.log(data)
     output_area.value = data.stdout;
     console.log(`[OUTPUT]:\n${data.stdout}`);
 
+    run_button.classList = ['btn run-btn'];
+    run_button_label.textContent = 'Run Code';
+    run_button_icon.classList = ['fas fa-play'];
+
 }
+
+
 
 function clear_code() {
     if(confirm("\n**WARNING**\n\nThis action will delete your code and make it unrecoverable.\nAre you sure you want to clear the code window?")) {
