@@ -112,6 +112,16 @@ async function run_code() {
          })
     });
 
+    stop_button.addEventListener('click', function(event) {
+        if (run_button.classList.contains('stop-btn')) {
+            console.log('[STOPPED] code execution...')
+            run_button.classList = ['btn run-btn'];
+            run_button_label.textContent = 'Run Code';
+            run_button_icon.classList = ['fas fa-play'];
+            return
+        }
+    });
+
     const data = await response.json();
     console.log("[RECIEVED] data from server...")
     console.log(data)
