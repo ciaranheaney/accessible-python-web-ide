@@ -8,16 +8,18 @@
     <title>Python Web IDE</title>
 </head>
 <body class="light-body" onload="document.querySelector('h1.title').focus();">
-    <header class="light-banner header-container" id="banner">
-        <h1 class="title">Python Web <abbr title="Integrated Development Environment" aria-label="Integrated Development Environment">IDE</abbr></h1>
+    <header class="light-banner header-container" id="banner" aria-labelledby="title">
+        <h1 class="title" id="title">Python Web <abbr title="Integrated Development Environment" aria-label="Integrated Development Environment">IDE</abbr></h1>
         <button class="light-menu-btn menu-btn" id="menu-btn" onclick="show_menu()" aria-label="open menu">
             <label for="menu-btn">Menu</label>
             <i class="fas fa-bars" style="font-size: 32px"></i>
         </button>
     </header>
 
-    <aside class="light-menu menu" id="menu">
-        <div class="menu-header">
+
+    <!-- ADD HELP MENU -->
+    <aside class="light-menu menu" id="menu" aria-label="menu" aria-hidden="true">
+        <div>
             <div class="menu-top-btns">
                 <button class="light-close-menu-btn close-menu-btn" id="close-menu-btn" onclick="hide_menu()" tabindex="-1" aria-label="hide menu">
                     <label for="close-menu-btn">Hide</label>
@@ -28,128 +30,121 @@
                     <i class="fas fa-redo" style="font-size: 32px;"></i>
                 </button>
             </div>
-            <h2 class="menu-header">Accessibility Settings</h2>
         </div>
-
-        <div class="font-input-container">
-            <div>
-                <label for="font-input" class="label">Font Size</label>
-                <input type="range" class="light-font-input font-input" id="font-input" value="20" min="12" max="48" step="2" oninput="change_font_size(this.value)" tabindex="-1">
+        <section class="settings-container">
+            <div style="display: flex; gap: 12px; justify-content: center; align-items: center; margin-bottom: -12px;">
+                <i class="fas fa-cog" style="font-size: 2rem;"></i>
+                <h2 class="menu-header" id="menu-header-title" aria-label="accessibility settings"><u>Settings</u></h2>
             </div>
-            <output class="font-output" id="font-size-output">20</output>
-        </div>
-
-        <!-- <div>
-            <label for="page-theme" class="label">Website Theme</label>
-            <div class="page-theme" id="page-theme">
-                <label class="theme-option" for="light-theme">Light
-                    <input type="radio" id="light-theme" name="theme" value="Light" onclick="set_theme('light')" checked="checked" tabindex="-1">
-                    <span class="light-checkmark checkmark"></span>
-                </label>
-                <label class="theme-option" for="light-contrast-theme">Light Contrast
-                    <input type="radio" id="light-contrast-theme" name="theme" value="Light Contrast" onclick="set_theme('light-contrast')" tabindex="-1">
-                    <span class="light-contrast-checkmark checkmark"></span>
-                </label>
-                <label class="theme-option" for="dark-theme">Dark
-                    <input type="radio" id="dark-theme" name="theme" value="Dark" onclick="set_theme('dark')" tabindex="-1">
-                    <span class="light-checkmark checkmark"></span>
-                </label>
-                <label class="theme-option" for="dark-contrast-theme">Dark Contrast
-                    <input type="radio" id="dark-contrast-theme" name="theme" value="Dark Contrast" onclick="set_theme('dark-contrast')" tabindex="-1">
-                    <span class="dark-contrast-checkmark checkmark"></span>
-                </label>
+            <div class="font-input-container" aria-label="font input">
+                <div>
+                    <label for="font-input" class="label">Font Size</label>
+                    <input type="range" class="light-font-input font-input" id="font-input" value="20" min="12" max="48" step="2" oninput="change_font_size(this.value)" tabindex="-1">
+                </div>
+                <output class="font-output" id="font-size-output">20</output>
             </div>
-        </div> -->
 
-        <!-- USING FIELDSET/LEGEND elements (better semantic coding) -->
-        <fieldset>
-            <legend>
-                <label for="page-theme"  class="label">Website Theme</label>
-            </legend>
-            <div class="page-theme" id="page-theme">
-                <label class="theme-option" for="light-theme">Light
-                    <input type="radio" id="light-theme" name="theme" value="Light" onclick="set_theme('light')" checked="checked" tabindex="-1">
-                    <span class="light-checkmark checkmark"></span>
-                </label>
-                <label class="theme-option" for="light-contrast-theme">Light Contrast
-                    <input type="radio" id="light-contrast-theme" name="theme" value="Light Contrast" onclick="set_theme('light-contrast')" tabindex="-1">
-                    <span class="light-contrast-checkmark checkmark"></span>
-                </label>
-                <label class="theme-option" for="dark-theme">Dark
-                    <input type="radio" id="dark-theme" name="theme" value="Dark" onclick="set_theme('dark')" tabindex="-1">
-                    <span class="light-checkmark checkmark"></span>
-                </label>
-                <label class="theme-option" for="dark-contrast-theme">Dark Contrast
-                    <input type="radio" id="dark-contrast-theme" name="theme" value="Dark Contrast" onclick="set_theme('dark-contrast')" tabindex="-1">
-                    <span class="dark-contrast-checkmark checkmark"></span>
-                </label>
+            <fieldset>
+                <legend>
+                    <label for="page-theme"  class="label">Website Theme</label>
+                </legend>
+                <div class="page-theme" id="page-theme">
+                    <label class="theme-option" for="light-theme">Light
+                        <input type="radio" id="light-theme" name="theme" value="Light" onclick="set_theme('light')" checked="checked" tabindex="-1">
+                        <span class="light-checkmark checkmark"></span>
+                    </label>
+                    <label class="theme-option" for="light-contrast-theme">Light Contrast
+                        <input type="radio" id="light-contrast-theme" name="theme" value="Light Contrast" onclick="set_theme('light-contrast')" tabindex="-1">
+                        <span class="light-contrast-checkmark checkmark"></span>
+                    </label>
+                    <label class="theme-option" for="dark-theme">Dark
+                        <input type="radio" id="dark-theme" name="theme" value="Dark" onclick="set_theme('dark')" tabindex="-1">
+                        <span class="light-checkmark checkmark"></span>
+                    </label>
+                    <label class="theme-option" for="dark-contrast-theme">Dark Contrast
+                        <input type="radio" id="dark-contrast-theme" name="theme" value="Dark Contrast" onclick="set_theme('dark-contrast')" tabindex="-1">
+                        <span class="dark-contrast-checkmark checkmark"></span>
+                    </label>
+                </div>
+            </fieldset>
+            
+
+            <div class="editor-theme" aria-label="editor theme">
+                <label for="editor-theme" class="label">Editor Theme</label>
+                <select name="editor-theme" id="editor-theme" class="editor-theme-select" onchange="change_editor_theme(this.value)" tabindex="-1">
+                    <optgroup label="Light Themes">
+                        <option value="chrome">Chrome</option>
+                        <option value="cloud_editor">Cloud Editor</option>
+                        <option value="cloud9_day">Cloud9 Day</option>
+                        <option value="clouds">Clouds</option>
+                        <option value="crimson_editor">Crimson Editor</option>
+                        <option value="dawn">Dawn</option>
+                        <option value="dreamweaver">Dreamweaver</option>
+                        <option value="eclipse">Eclipse</option>
+                        <option value="github_light_default">GitHub Light Default</option>
+                        <option value="github">GitHub</option>
+                        <option value="gruvbox_light_hard">Gruvbox Light Hard</option>
+                        <option value="iplastic">IPlastic</option>
+                        <option value="katzenmilch">KatzenMilch</option>
+                        <option value="kuroir">Kuroir</option>
+                        <option value="solarized_light">Solarized Light</option>
+                        <option value="sqlserver">SQL Server</option>
+                        <option value="textmate" selected="selected">Textmate</option>
+                        <option value="tomorrow">Tomorrow</option>
+                        <option value="xcode">XCode</option>
+                    </optgroup>
+                    <optgroup label="Dark Themes">
+                        <option value="ambiance">Ambiance</option>
+                        <option value="chaos">Chaos</option>
+                        <option value="cloud_editor_dark">Cloud Editor Dark</option>
+                        <option value="cloud9_night_low_color">Cloud9 Night Low Color</option>
+                        <option value="cloud9_night">Cloud9 Night</option>
+                        <option value="clouds_midnight">Clouds Midnight</option>
+                        <option value="cobalt">Cobalt</option>
+                        <option value="dracula">Dracula</option>
+                        <option value="github_dark">GitHub Dark</option>
+                        <option value="gob">Green on Black</option>
+                        <option value="gruvbox_dark_hard">Gruvbox Dark Hard</option>
+                        <option value="gruvbox">Gruvbox</option>
+                        <option value="idle_fingers">idle Fingers</option>
+                        <option value="kr_theme">krTheme</option>
+                        <option value="merbivore_soft">Merbivore Soft</option>
+                        <option value="merbivore">Merbivore</option>
+                        <option value="mono_industrial">Mono Industrial</option>
+                        <option value="monokai">Monokai</option>
+                        <option value="nord_dark">Nord Dark</option>
+                        <option value="one_dark">One Dark</option>
+                        <option value="pastel_on_dark">Pastel on Dark</option>
+                        <option value="solarized_dark">Solarized Dark</option>
+                        <option value="terminal">Terminal</option>
+                        <option value="tomorrow_night_blue">Tomorrow Night Blue</option>
+                        <option value="tomorrow_night_bright">Tomorrow Night Bright</option>
+                        <option value="tomorrow_night_eighties">Tomorrow Night Eighties</option>
+                        <option value="tomorrow_night">Tomorrow Night</option>
+                        <option value="twilight">Twilight</option>
+                        <option value="vibrant_ink">Vibrant Ink</option>
+                    </optgroup>
+                </select>
             </div>
-        </fieldset>
-        
-
-        <div class="editor-theme">
-            <label for="editor-theme" class="label">Editor Theme</label>
-            <select name="editor-theme" id="editor-theme" class="editor-theme-select" onchange="change_editor_theme(this.value)" tabindex="-1">
-                <optgroup label="Light Themes">
-                    <option value="chrome">Chrome</option>
-                    <option value="cloud_editor">Cloud Editor</option>
-                    <option value="cloud9_day">Cloud9 Day</option>
-                    <option value="clouds">Clouds</option>
-                    <option value="crimson_editor">Crimson Editor</option>
-                    <option value="dawn">Dawn</option>
-                    <option value="dreamweaver">Dreamweaver</option>
-                    <option value="eclipse">Eclipse</option>
-                    <option value="github_light_default">GitHub Light Default</option>
-                    <option value="github">GitHub</option>
-                    <option value="gruvbox_light_hard">Gruvbox Light Hard</option>
-                    <option value="iplastic">IPlastic</option>
-                    <option value="katzenmilch">KatzenMilch</option>
-                    <option value="kuroir">Kuroir</option>
-                    <option value="solarized_light">Solarized Light</option>
-                    <option value="sqlserver">SQL Server</option>
-                    <option value="textmate" selected="selected">Textmate</option>
-                    <option value="tomorrow">Tomorrow</option>
-                    <option value="xcode">XCode</option>
-                </optgroup>
-                <optgroup label="Dark Themes">
-                    <option value="ambiance">Ambiance</option>
-                    <option value="chaos">Chaos</option>
-                    <option value="cloud_editor_dark">Cloud Editor Dark</option>
-                    <option value="cloud9_night_low_color">Cloud9 Night Low Color</option>
-                    <option value="cloud9_night">Cloud9 Night</option>
-                    <option value="clouds_midnight">Clouds Midnight</option>
-                    <option value="cobalt">Cobalt</option>
-                    <option value="dracula">Dracula</option>
-                    <option value="github_dark">GitHub Dark</option>
-                    <option value="gob">Green on Black</option>
-                    <option value="gruvbox_dark_hard">Gruvbox Dark Hard</option>
-                    <option value="gruvbox">Gruvbox</option>
-                    <option value="idle_fingers">idle Fingers</option>
-                    <option value="kr_theme">krTheme</option>
-                    <option value="merbivore_soft">Merbivore Soft</option>
-                    <option value="merbivore">Merbivore</option>
-                    <option value="mono_industrial">Mono Industrial</option>
-                    <option value="monokai">Monokai</option>
-                    <option value="nord_dark">Nord Dark</option>
-                    <option value="one_dark">One Dark</option>
-                    <option value="pastel_on_dark">Pastel on Dark</option>
-                    <option value="solarized_dark">Solarized Dark</option>
-                    <option value="terminal">Terminal</option>
-                    <option value="tomorrow_night_blue">Tomorrow Night Blue</option>
-                    <option value="tomorrow_night_bright">Tomorrow Night Bright</option>
-                    <option value="tomorrow_night_eighties">Tomorrow Night Eighties</option>
-                    <option value="tomorrow_night">Tomorrow Night</option>
-                    <option value="twilight">Twilight</option>
-                    <option value="vibrant_ink">Vibrant Ink</option>
-                </optgroup>
-            </select>
-
-        </div>
+        </section>
+        <section aria-label="help section" class="help-section">
+            <h2 class="menu-header help-section-header" id="help-header">
+                <i class="fas fa-info-circle" style="font-size: 2rem;"></i>
+                <u>Help Section</u>
+            </h2>
+            <ul>
+                <li class="help-li">Press [ESC] while in code editor to exit</li>
+                <li class="help-li">Write Python code in code editor</li>
+                <li class="help-li">Enter inputs in input area if program requires user-input</li>
+                <li class="help-li">Click "Run Code" button to compile and run code</li>
+                <li class="help-li">View program output in output area</li>
+            </ul>
+        </section>
 
     </aside>
     <div id="overlay"></div>
 
-    <main class="light-editor-container editor-container" id="editor-container">
+    <main class="light-editor-container editor-container" id="editor-container" aria-labelledby="editor-title">
         <div class="light-editor-header editor-header" id="editor-header">
             <h2 class="editor-title" id="editor-title">
                 <label for="ace_text-input">Code Editor</label>
@@ -163,13 +158,13 @@
                 <label for="clear-code-btn">Clear Code</label>
             </button>
         </div>
-        <div class="code-container" id="editor" aria-labelledby="editor-title"></div>
+        <div class="code-container" id="editor" aria-label="code editor text input"></div>
     </main>
 
     <section class="bottom-area">
-        <div class="light-input-container input-container" id="input-container">
+        <div class="light-input-container input-container" id="input-container" aria-labelledby="input-title">
             <div class="light-input-header input-header" id="input-header">
-                <h2 class="input-title">
+                <h2 class="input-title" id="input-title">
                     <label for="input-area">Inputs</label>
                 </h2>
                 <button class="btn clear-btn" id="clear-input-btn" onclick="clear_input()">
@@ -177,11 +172,11 @@
                     <label for="clear-input-btn">Clear Inputs</label>
                 </button>
             </div>
-            <textarea class="input-area" id="input-area"></textarea>
+            <textarea class="input-area" id="input-area" aria-label="input area"></textarea>
         </div>
-        <div class="light-output-container output-container" id="output-container">
+        <div class="light-output-container output-container" id="output-container" aria-labelledby="output-title">
             <div class="light-output-header output-header" id="output-header">
-                <h2 class="output-title">
+                <h2 class="output-title" id="output-title">
                     <label for="output-area">Output</label>
                 </h2>
                 <button class="btn clear-btn" id="clear-output-btn" onclick="clear_output()">
@@ -189,7 +184,7 @@
                     <label for="clear-output-btn">Clear Output</label>
                 </button>
             </div>
-            <textarea class="output-area" id="output-area" aria-live="polite" readonly tabindex="-1"></textarea>
+            <textarea class="output-area" id="output-area" aria-live="polite" tabindex="-1" aria-label="output area" readonly></textarea>
         </div>
     </section>
 
