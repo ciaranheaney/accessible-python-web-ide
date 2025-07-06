@@ -127,7 +127,8 @@ function show_menu() {
     menu.classList.add('open');
     overlay.style.display = 'block';
 
-    menu.style.display = 'flex';
+    // menu.style.display = 'flex';
+    menu.ariaHidden = 'false';
 
     menu_button.tabIndex = '-1';
     run_button.tabIndex = '-1';
@@ -154,7 +155,8 @@ function hide_menu() {
     menu.classList.remove('open');
     overlay.style.display = 'none';
 
-    menu.style.display = 'none';
+    menu.ariaHidden = 'true';
+    // menu.style.display = 'none';
 
     hide_menu_button.tabIndex = '-1';
     reset_button.tabIndex = '-1';
@@ -171,14 +173,18 @@ function hide_menu() {
     // output_area.tabIndex = '0';
     editor_input.tabIndex = '0';
     ace_scrollbar.tabIndex = '0';
+
+    menu_button.focus();
 }
 
 
 function change_font_size(font_size) {
+    const default_font_size = 20;
     console.log(`[CHANGE] font size to ${font_size}px...`)
     editor_area.style.fontSize = `${font_size}px`;
     input_area.style.fontSize = `${font_size}px`;
     output_area.style.fontSize = `${font_size}px`;
+
     font_size_output.value = font_size;
 }
 
@@ -192,7 +198,8 @@ function close_menu(event) {
             menu.classList.remove('open');
             overlay.style.display = 'none';
 
-            menu.style.display = 'none';
+            // menu.style.display = 'none';
+            menu.ariaHidden = 'true';
 
             hide_menu_button.tabIndex = '-1';
             reset_button.tabIndex = '-1';
@@ -209,6 +216,8 @@ function close_menu(event) {
             // output_area.tabIndex = '0';
             editor_input.tabIndex = '0';
             ace_scrollbar.tabIndex = '0';
+            
+            menu_button.focus();
         }
     }
 
@@ -275,3 +284,7 @@ document.addEventListener("keydown", function(event) {
         clear_input_button.focus();
     }
 });
+
+function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
