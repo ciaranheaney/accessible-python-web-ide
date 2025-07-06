@@ -86,15 +86,7 @@ async function run_code() {
     if (input.trim()) {
         console.log("[SENDING] input to server...")
     }
-
-    const response = await fetch("/run", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-            "input": input,
-            "code": code
-         })
-    });
+    
 
     run_button.classList = ['btn stop-btn'];
     run_button_label.textContent = 'Stop Code';
@@ -105,6 +97,15 @@ async function run_code() {
         if (run_button.classList.contains('stop-btn')) {
             console.log('[STOPPED] code execution...')
         }
+    });
+
+    const response = await fetch("/run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+            "input": input,
+            "code": code
+         })
     });
 
     const data = await response.json();
