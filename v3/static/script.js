@@ -24,6 +24,7 @@ editor.setOptions({
 // Buttons
 const menu_button = document.getElementById('menu-btn');
 const hide_menu_button = document.getElementById('close-menu-btn');
+const control_button = document.getElementById('control-btn')
 const run_button = document.getElementById('run-btn');
 const run_button_icon = document.getElementById('run-btn-icon');
 const run_button_label = document.getElementById('run-btn-lbl');
@@ -70,13 +71,20 @@ const dark_themes = [
     "twilight", "vibrant_ink"
 ]
 
-async function run_code() {
-    console.log("[RUN] button pressed...")
-    const code = editor.getValue();
-    const input = input_area.value
+// Global abort request controller
+let controller;
 
+
+
+function run_code() {
+    // Get code and inputs
+    console.log("[RUN] button pressed...");
+    const code = editor.getValue();
+    const input = input_area.value;
+
+    // Check if code is empty -> Don't run if empty
     if (!code.trim()) {
-        console.log("[ERROR] Cannot run empty code...")
+        console.log("[ERROR] Cannot run empty code...");
         output_area.value = "ERROR: Cannot run empty code...";
         return
     }
@@ -86,52 +94,45 @@ async function run_code() {
     if (input.trim()) {
         console.log("[SENDING] input to server...")
     }
-    
 
-    run_button.classList = ['btn stop-btn'];
-    run_button_label.textContent = 'Stop Code';
-    run_button_icon.classList = ['fas fa-stop'];
-    const stop_button = document.querySelector('#run-btn.stop-btn');
+    // Create a new abort signal for each request
+    controller = new AbortController();
 
-    stop_button.addEventListener('click', function(event) {
-        if (run_button.classList.contains('stop-btn')) {
-            console.log('[STOPPED] code execution...')
-            run_button.classList = ['btn run-btn'];
-            run_button_label.textContent = 'Run Code';
-            run_button_icon.classList = ['fas fa-play'];
-            return
-        }
-    });
+    // Change run button to stop button
+    control_button.innerHTML = '<button class="btn stop-btn" id="stop-btn" onclick="stop_code()" aria-controls="output-area"><i class="fas fa-stop" id="stop-btn-icon"></i><label for="stop-btn" id="stop-btn-lbl">Stop Code</label></button>';
 
-    const response = await fetch("/run", {
+    // Send code and inputs to backend and handle response
+    fetch("/run", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
             "input": input,
             "code": code
-         })
-    });
+         }),
+         signal: controller.signal
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log("[RECIEVED] data from server...")
+            console.log(data)
+            output_area.value = data.stdout;
+            console.log(`[OUTPUT]:\n${data.stdout}`);
+            control_button.innerHTML = '<button class="btn run-btn" id="run-btn" onclick="run_code()" aria-controls="output-area"><i class="fas fa-play" id="run-btn-icon"></i><label for="run-btn" id="run-btn-lbl">Run Code</label></button>'
+        })
+        .catch(err => {
+            if (err.name === 'AbortError') {
+            } else {
+                console.log(`[ERROR]: ${error}`);
+            }
+        })
+}
 
-    stop_button.addEventListener('click', function(event) {
-        if (run_button.classList.contains('stop-btn')) {
-            console.log('[STOPPED] code execution...')
-            run_button.classList = ['btn run-btn'];
-            run_button_label.textContent = 'Run Code';
-            run_button_icon.classList = ['fas fa-play'];
-            return
-        }
-    });
 
-    const data = await response.json();
-    console.log("[RECIEVED] data from server...")
-    console.log(data)
-    output_area.value = data.stdout;
-    console.log(`[OUTPUT]:\n${data.stdout}`);
-
-    run_button.classList = ['btn run-btn'];
-    run_button_label.textContent = 'Run Code';
-    run_button_icon.classList = ['fas fa-play'];
-
+function stop_code() {
+    console.log("[ABORTING] code execution...");
+    output_area.value = '** Process Stopped **';
+    controller.abort();
+    control_button.innerHTML = '<button class="btn run-btn" id="run-btn" onclick="run_code()" aria-controls="output-area"><i class="fas fa-play" id="run-btn-icon"></i><label for="run-btn" id="run-btn-lbl">Run Code</label></button>';
 }
 
 
