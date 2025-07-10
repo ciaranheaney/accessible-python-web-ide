@@ -9,7 +9,6 @@ const default_code = `
 
 # Write code here...
 
-
 `
 
 editor.setValue(default_code, -1);
@@ -54,6 +53,7 @@ const output_area = document.getElementById('output-area');
 const font_size_output = document.getElementById('font-size-output');
 const overlay = document.getElementById('overlay');
 
+
 // Themes
 const light_themes = [
     "chrome", "cloud_editor", "cloud9_day", "clouds", "crimson_editor", 
@@ -74,9 +74,10 @@ const dark_themes = [
 // Global abort request controller
 let controller;
 
-
-
 function run_code() {
+    // Clear output area
+    output_area.value = "";
+
     // Get code and inputs
     console.log("[RUN] button pressed...");
     const code = editor.getValue();
@@ -117,13 +118,15 @@ function run_code() {
             console.log(data)
             output_area.value = data.stdout;
             console.log(`[OUTPUT]:\n${data.stdout}`);
-            control_button.innerHTML = '<button class="btn run-btn" id="run-btn" onclick="run_code()" aria-controls="output-area"><i class="fas fa-play" id="run-btn-icon"></i><label for="run-btn" id="run-btn-lbl">Run Code</label></button>'
+            control_button.innerHTML = '<button class="btn run-btn" id="run-btn" onclick="run_code()" aria-controls="output-area"><i class="fas fa-play" id="run-btn-icon"></i><label for="run-btn" id="run-btn-lbl">Run Code</label></button>';
+            output_area.scroll(0, output_area.scrollHeight);
         })
         .catch(err => {
             if (err.name === 'AbortError') {
             } else {
-                console.log(`[ERROR]: ${error}`);
+                console.log(`[ERROR]: ${err}`);
             }
+            output_area.scroll(0, output_area.scrollHeight);
         })
 }
 
