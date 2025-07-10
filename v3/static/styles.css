@@ -438,6 +438,13 @@ ul {
     white-space: nowrap;
 }
 
+.control-btn {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
 .run-btn {
     background-color: #0ece74;
     border: 2px outset #0ece74;
