@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template, jsonify
 import requests
 import time
-import os
 
 app = Flask(__name__)
 
@@ -15,24 +14,28 @@ HEADERS = {
     "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com"
 }
 
-PYTHON_LANGUAGE_ID = 71     # Found at https://ce.judge0.com/languages (Python 3.8.1)
+PYTHON_LANGUAGE_ID = 71   # Found at https://ce.judge0.com/languages (Python 3.8.1)
 
-MEMORY_LIMIT = 64000  # 64kb
-CPU_TIME_LIMIT = 2  # 1sec
-CPU_EXTRA_TIME = 0.5
-WALL_TIME_LIMIT = 5
+MEMORY_LIMIT = 64000      # 64kb
+CPU_TIME_LIMIT = 2        # 1sec
+CPU_EXTRA_TIME = 0.5      # 0.5sec
+WALL_TIME_LIMIT = 5       # 5sec
+
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
 
+
 @app.route("/run", methods=["POST"])
 def run_code():
+    # Get code and inputs from frontend
     data = request.json
     code = data.get("code", "")
     user_input = data.get("input", "")
 
+    # Send submission to Judeg0 API
     submission_response = requests.post(
         f"{JUDGE0_URL}/submissions?base64_encoded=false&wait=false",
         json = {
@@ -54,6 +57,7 @@ def run_code():
 
     token = submission_response.json().get("token")
 
+    # Wait to recieve response from API
     while True:
         result_response = requests.get(
             f"{JUDGE0_URL}/submissions/{token}?base64_encoded=false",
@@ -66,6 +70,7 @@ def run_code():
 
     print(result)
 
+    # Send API response to frontend
     return jsonify({
         "stdout": result["stdout"],
         "stderr": result["stderr"],
