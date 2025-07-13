@@ -125,6 +125,7 @@ function run_code() {
             if (err.name === 'AbortError') {
             } else {
                 console.log(`[ERROR]: ${err}`);
+                control_button.innerHTML = '<button class="btn run-btn" id="run-btn" onclick="run_code()" aria-controls="output-area"><i class="fas fa-play" id="run-btn-icon"></i><label for="run-btn" id="run-btn-lbl">Run Code</label></button>';
             }
             output_area.scroll(0, output_area.scrollHeight);
         })
