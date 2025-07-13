@@ -99,6 +99,7 @@ abbr {
     position: fixed;
     top: 0;
     right: -370px;
+    overflow-y: auto;
 
     width: 350px;
     height: 100%;
