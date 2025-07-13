@@ -43,6 +43,9 @@ def set_mem_limit():
 
 if __name__ == "__main__":
     code = sys.argv[1]
+    user_input = sys.argv[2]
     set_mem_limit()
     drop_perms()
+    # command = f'echo "{user_input}" | python3 -c "{code}"'
+    # os.system(command)
     exec(code)
