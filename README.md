@@ -1,46 +1,57 @@
 
 # Accessible Python Web IDE
 
-This project is a web-based Python IDE (Integrated Development Environment) primarily designed to be accessible for blind and low-vision students learning how to code.
+This project is a web-based Python IDE (Integrated Development Environment) primarily designed to be accessible for blind and low-vision students learning how to code utilizing the JAWS screenreader on Windows machines.
 
-## Basic Instructions (Temporary)
+## Installation Steps
 
-Follow these steps to set up and run the project locally on a Windows machine:
-
-1. Clone the repository:
+Ensure the following dependencies are installed prior to deploying the web app.
+1. Install Docker on host machine (Add more ... ) 
+2. Clone this repository:
 	```
 	git clone https://github.com/ciaranheaney/accessible-python-web-ide.git
-	cd accessible-python-web-ide/v2
 	```
-	- Optionally select which version you would like to use by changing the v2 to your preferred version
 	
-2. Create and activate a virtual environment:
+## Web App Deployment
 
-	1. In PowerShell:
-		```
-		python3 -m venv myen
-		myenv/Scripts/activate
-		```
-	2. In Git Bash:
-		```
-		python3 -m venv myenv
-		source myenv/Scripts/activate
-		```
-3. Install Flask in a virtual environment:
-	```
-	pip install flask
-	```
-4. Start the development server:
-	```
-	python3 server.py
-	```
-	- This command will start both the frontend and backend servers
-5. Visit the development server displayed from the previous command
+#### Follow the following steps to deploy the web app.
+1. Make the `run_docker` script executable by running:
+	`chmod +x scripts/run_docker.sh`
+3. Build the Docker image and run the Docker container by running the following script:
+	`./run_docker [image-name] [container-name] [port-number]`
+	Example:
+	`./run_docker webide-image webide-container 5000`
+4. Visit `http://[ip-address]:[port-number]` in web browser
+	Example: 
+	`http://0.0.0.0:5000`
+	
+#### Follow the following steps to shut down the web app.
+1.  Make the `cleanup_docker` script executable by running:
+	`chmod +x scripts/cleanup_docker.sh`
+2. Stop the Docker container and remove the Docker container and image by running the following script:
+	`./cleanup_docker [image-name] [container-name]`
+	Example:
+	`./cleanup_docker webide-image webide-container`
+	
+## Usage Instructions
+
 
 
 ## Project Structure
-* `v1/, v2/, ...`: Contain each version of the site
-* `server.py`: Contains the Python backend code
-* `templates/`: Contains the HTML frontend code
-* `static/` Contains the CSS and JS frontend code
+```
+.
+├── app
+│ 	├── app.py
+│ 	├── static
+│   │   ├── ace [54 entries exceeds filelimit, not opening dir]
+│   │   ├── script.js
+│   │   └── styles.css
+│   └── templates
+│   └── index.html
+├── Dockerfile
+├── README.md
+└── requirements.txt
+```
+
+## Credits
 
