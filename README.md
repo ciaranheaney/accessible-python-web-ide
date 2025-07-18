@@ -41,16 +41,20 @@ Ensure the following dependencies are installed prior to deploying the web app.
 ```
 .
 ├── app
-│ 	├── app.py
-│ 	├── static
-│   │   ├── ace [54 entries exceeds filelimit, not opening dir]
-│   │   ├── script.js
-│   │   └── styles.css
-│   └── templates
-│   └── index.html
+│   ├── app.py
+│   ├── static
+│   │   ├── ace [54 entries exceeds filelimit, not opening dir]
+│   │   ├── script.js
+│   │   └── styles.css
+│   └── templates
+│       └── index.html
+├── cleanup_docker.sh
 ├── Dockerfile
 ├── README.md
-└── requirements.txt
+├── requirements.txt
+└── run_docker.sh
+
+4 directories, 9 files
 ```
 
 ## Credits
