@@ -20,6 +20,133 @@ editor.setOptions({
     enableLiveAutocompletion: false
 });
 
+// Side menu HTML code
+menu_code = `<aside class="light-menu menu" id="menu" aria-label="menu">
+        <div>
+            <div class="menu-top-btns">
+                <button class="light-close-menu-btn close-menu-btn" id="close-menu-btn" onclick="hide_menu()" aria-label="hide menu">
+                    <label for="close-menu-btn">Hide</label>
+                    <i class="fas fa-times" style="font-size: 32px;"></i>
+                </button>
+                <button class="light-reset-btn reset-btn" id="reset-btn" onclick="reset_settings()" aria-label="reset settings">
+                    <label for="reset-btn">Reset</label>
+                    <i class="fas fa-redo" style="font-size: 32px;"></i>
+                </button>
+            </div>
+        </div>
+        <section class="settings-container">
+            <div style="display: flex; gap: 12px; justify-content: center; align-items: center; margin-bottom: -12px;">
+                <i class="fas fa-cog" style="font-size: 2rem;"></i>
+                <h2 class="menu-header" id="menu-header-title" aria-label="accessibility settings"><u>Settings</u></h2>
+            </div>
+            <div class="font-input-container" aria-label="font input">
+                <div>
+                    <label for="font-input" class="label">Font Size</label>
+                    <input type="range" class="light-font-input font-input" id="font-input" value="20" min="12" max="48" step="2" oninput="change_font_size(this.value)">
+                </div>
+                <output class="font-output" id="font-size-output">20</output>
+            </div>
+
+            <fieldset>
+                <legend>
+                    <label for="page-theme"  class="label">Website Theme</label>
+                </legend>
+                <div class="page-theme" id="page-theme">
+                    <label class="theme-option" for="light-theme">Light
+                        <input type="radio" id="light-theme" name="theme" value="Light" onclick="set_theme('light')" checked="checked">
+                        <span class="light-checkmark checkmark"></span>
+                    </label>
+                    <label class="theme-option" for="light-contrast-theme">Light Contrast
+                        <input type="radio" id="light-contrast-theme" name="theme" value="Light Contrast" onclick="set_theme('light-contrast')">
+                        <span class="light-contrast-checkmark checkmark"></span>
+                    </label>
+                    <label class="theme-option" for="dark-theme">Dark
+                        <input type="radio" id="dark-theme" name="theme" value="Dark" onclick="set_theme('dark')">
+                        <span class="light-checkmark checkmark"></span>
+                    </label>
+                    <label class="theme-option" for="dark-contrast-theme">Dark Contrast
+                        <input type="radio" id="dark-contrast-theme" name="theme" value="Dark Contrast" onclick="set_theme('dark-contrast')">
+                        <span class="dark-contrast-checkmark checkmark"></span>
+                    </label>
+                </div>
+            </fieldset>
+            
+
+            <div class="editor-theme" aria-label="editor theme">
+                <label for="editor-theme" class="label">Editor Theme</label>
+                <select name="editor-theme" id="editor-theme" class="editor-theme-select" onchange="change_editor_theme(this.value)">
+                    <optgroup label="Light Themes">
+                        <option value="chrome">Chrome</option>
+                        <option value="cloud_editor">Cloud Editor</option>
+                        <option value="cloud9_day">Cloud9 Day</option>
+                        <option value="clouds">Clouds</option>
+                        <option value="crimson_editor">Crimson Editor</option>
+                        <option value="dawn">Dawn</option>
+                        <option value="dreamweaver">Dreamweaver</option>
+                        <option value="eclipse">Eclipse</option>
+                        <option value="github_light_default">GitHub Light Default</option>
+                        <option value="github">GitHub</option>
+                        <option value="gruvbox_light_hard">Gruvbox Light Hard</option>
+                        <option value="iplastic">IPlastic</option>
+                        <option value="katzenmilch">KatzenMilch</option>
+                        <option value="kuroir">Kuroir</option>
+                        <option value="solarized_light">Solarized Light</option>
+                        <option value="sqlserver">SQL Server</option>
+                        <option value="textmate" selected="selected">Textmate</option>
+                        <option value="tomorrow">Tomorrow</option>
+                        <option value="xcode">XCode</option>
+                    </optgroup>
+                    <optgroup label="Dark Themes">
+                        <option value="ambiance">Ambiance</option>
+                        <option value="chaos">Chaos</option>
+                        <option value="cloud_editor_dark">Cloud Editor Dark</option>
+                        <option value="cloud9_night_low_color">Cloud9 Night Low Color</option>
+                        <option value="cloud9_night">Cloud9 Night</option>
+                        <option value="clouds_midnight">Clouds Midnight</option>
+                        <option value="cobalt">Cobalt</option>
+                        <option value="dracula">Dracula</option>
+                        <option value="github_dark">GitHub Dark</option>
+                        <option value="gob">Green on Black</option>
+                        <option value="gruvbox_dark_hard">Gruvbox Dark Hard</option>
+                        <option value="gruvbox">Gruvbox</option>
+                        <option value="idle_fingers">idle Fingers</option>
+                        <option value="kr_theme">krTheme</option>
+                        <option value="merbivore_soft">Merbivore Soft</option>
+                        <option value="merbivore">Merbivore</option>
+                        <option value="mono_industrial">Mono Industrial</option>
+                        <option value="monokai">Monokai</option>
+                        <option value="nord_dark">Nord Dark</option>
+                        <option value="one_dark">One Dark</option>
+                        <option value="pastel_on_dark">Pastel on Dark</option>
+                        <option value="solarized_dark">Solarized Dark</option>
+                        <option value="terminal">Terminal</option>
+                        <option value="tomorrow_night_blue">Tomorrow Night Blue</option>
+                        <option value="tomorrow_night_bright">Tomorrow Night Bright</option>
+                        <option value="tomorrow_night_eighties">Tomorrow Night Eighties</option>
+                        <option value="tomorrow_night">Tomorrow Night</option>
+                        <option value="twilight">Twilight</option>
+                        <option value="vibrant_ink">Vibrant Ink</option>
+                    </optgroup>
+                </select>
+            </div>
+        </section>
+        <section aria-label="help section" class="help-section">
+            <h2 class="menu-header help-section-header" id="help-header">
+                <i class="fas fa-info-circle" style="font-size: 2rem;"></i>
+                <u>Help Section</u>
+            </h2>
+            <ul>
+                <li class="help-li">Write Python code in code editor</li>
+                <li class="help-li">Press [ESC] while in code editor to exit</li>
+                <li class="help-li">Enter inputs in input area if program requires user input</li>
+                <li class="help-li">Click "Run Code" button to compile and execute code</li>
+                <li class="help-li">Click "Stop Code" button to cancel code execution</li>
+                <li class="help-li">View program output in output area</li>
+            </ul>
+        </section>
+
+    </aside>`;
+
 // Buttons
 const menu_button = document.getElementById('menu-btn');
 const hide_menu_button = document.getElementById('close-menu-btn');
@@ -162,119 +289,91 @@ function clear_input() {
 }
 
 function show_menu() {
-    console.log("[OPEN] side menu...")
-    menu.classList.add('open');
+    console.log("[OPEN] side menu...");
+
+    document.getElementById('menu-wrapper').style.display = 'block';
     overlay.style.display = 'block';
+    document.getElementById('menu-wrapper').innerHTML = menu_code;
+    const menu = document.getElementById('menu');
+    void menu.offsetWidth;
+    menu.classList.add('open');
 
-    // menu.style.display = 'flex';
-    menu.ariaHidden = 'false';
+    document.getElementById('menu-btn').tabIndex = '-1';
+    document.getElementById('run-btn').tabIndex = '-1';
+    document.getElementById('clear-code-btn').tabIndex = '-1';
+    document.getElementById('clear-input-btn').tabIndex = '-1';
+    document.getElementById('clear-output-btn').tabIndex = '-1';
+    document.getElementById('input-header').tabIndex = '-1';
+    document.getElementById('input-area').tabIndex = '-1';
+    document.getElementById('output-area').tabIndex = '-1';
+    document.querySelector('.ace_text-input').tabIndex = '-1';
+    document.querySelector('.ace_scrollbar').tabIndex = '-1';
 
-    menu_button.tabIndex = '-1';
-    run_button.tabIndex = '-1';
-    clear_code_button.tabIndex = '-1';
-    clear_input_button.tabIndex = '-1';
-    clear_output_button.tabIndex = '-1';
-    input_area.tabIndex = '-1';
-    // output_area.tabIndex = '-1';
-    editor_input.tabIndex = '-1';
-    ace_scrollbar.tabIndex = '-1';
-
-    hide_menu_button.tabIndex = '0';
-    reset_button.tabIndex = '0';
-    font_input.tabIndex = '0';
-    editor_theme_input.tabIndex = '0';
-    document.querySelectorAll('.page-theme label input').forEach(input => input.tabIndex = '0');
-
-
-
+    document.getElementById('close-menu-btn').focus();
 }
+
 
 function hide_menu() {
-    console.log("[CLOSE] side menu...")
+    console.log("[CLOSE] side menu...");
+
+    const menu = document.getElementById('menu');
     menu.classList.remove('open');
-    overlay.style.display = 'none';
+    menu.addEventListener('transitionend', (e) => {
+        if (e.propertyName === 'right') {
+            document.getElementById('menu-wrapper').style.display = 'none';
+            document.getElementById('menu-wrapper').innerHTML = '';
+            overlay.style.display = 'none';
+        }
+    });
 
-    menu.ariaHidden = 'true';
-    // menu.style.display = 'none';
+    document.getElementById('menu-btn').tabIndex = '0';
+    document.getElementById('run-btn').tabIndex = '0';
+    document.getElementById('clear-code-btn').tabIndex = '0';
+    document.getElementById('clear-input-btn').tabIndex = '0';
+    document.getElementById('clear-output-btn').tabIndex = '0';
+    document.getElementById('input-area').tabIndex = '0';
+    document.getElementById('output-area').tabIndex = '0';
+    document.querySelector('.ace_text-input').tabIndex = '0';
+    document.querySelector('.ace_scrollbar').tabIndex = '0';
 
-    hide_menu_button.tabIndex = '-1';
-    reset_button.tabIndex = '-1';
-    font_input.tabIndex = '-1';
-    editor_theme_input.tabIndex = '-1';
-    document.querySelectorAll('.page-theme label input').forEach(input => input.tabIndex = '-1');
-
-    menu_button.tabIndex = '0';
-    run_button.tabIndex = '0';
-    clear_code_button.tabIndex = '0';
-    clear_input_button.tabIndex = '0';
-    clear_output_button.tabIndex = '0';
-    input_area.tabIndex = '0';
-    // output_area.tabIndex = '0';
-    editor_input.tabIndex = '0';
-    ace_scrollbar.tabIndex = '0';
-
-    menu_button.focus();
+    document.getElementById('menu-btn').focus();
 }
+
+
+// Exit menu if user clicks off of the menu
+document.addEventListener('click', function(event) {
+    const menu = document.getElementById('menu');
+    if (!menu || event.pointerType !== 'mouse') return;
+    if (menu.classList.contains('open')) {
+        var mouseClickWidth = event.clientX;
+        if (window.innerWidth - mouseClickWidth >= menu.offsetWidth){
+            hide_menu();
+        }
+    }
+})
 
 
 function change_font_size(font_size) {
-    const default_font_size = 20;
     console.log(`[CHANGE] font size to ${font_size}px...`)
     editor_area.style.fontSize = `${font_size}px`;
     input_area.style.fontSize = `${font_size}px`;
     output_area.style.fontSize = `${font_size}px`;
 
-    font_size_output.value = font_size;
+    document.getElementById('font-size-output').value = font_size;
 }
-
-
-function close_menu(event) {
-    if (event.pointerType !== 'mouse') return;
-    if (menu.classList.contains('open')) {
-        var mouseClickWidth = event.clientX;
-        if (window.innerWidth - mouseClickWidth >= menu.offsetWidth){
-            console.log("[CLOSE] side menu...")
-            menu.classList.remove('open');
-            overlay.style.display = 'none';
-
-            // menu.style.display = 'none';
-            menu.ariaHidden = 'true';
-
-            hide_menu_button.tabIndex = '-1';
-            reset_button.tabIndex = '-1';
-            font_input.tabIndex = '-1';
-            editor_theme_input.tabIndex = '-1';
-            document.querySelectorAll('.page-theme label input').forEach(input => input.tabIndex = '-1');
-
-            menu_button.tabIndex = '0';
-            run_button.tabIndex = '0';
-            clear_code_button.tabIndex = '0';
-            clear_input_button.tabIndex = '0';
-            clear_output_button.tabIndex = '0';
-            input_area.tabIndex = '0';
-            // output_area.tabIndex = '0';
-            editor_input.tabIndex = '0';
-            ace_scrollbar.tabIndex = '0';
-            
-            menu_button.focus();
-        }
-    }
-
-}
-document.addEventListener("click", close_menu);
 
 
 function change_editor_theme(theme) {
     console.log(`[SET] editor theme to ${theme}...`)
     editor.setTheme('ace/theme/' + theme);
-    editor_theme_input.value = theme;
+    document.getElementById('editor-theme').value = theme;
 }
 
 function reset_settings() {
     console.log("[RESET] to default settings...")
     change_font_size(20);
     editor.setTheme('ace/theme/textmate');
-    editor_theme_input.value = 'textmate';
+    document.getElementById('editor-theme').value = 'textmate';
     set_theme('light');
 }
 
@@ -289,11 +388,11 @@ function set_theme(theme) {
 
     body.classList = [`${theme}-body ${theme}`];
     banner.classList = [`${theme}-banner header-container ${theme}`];
-    menu.classList = [`${theme}-menu menu open ${theme}`];
-    menu_button.classList = [`${theme}-menu-btn menu-btn ${theme}`];
-    hide_menu_button.classList = [`${theme}-close-menu-btn close-menu-btn ${theme}`];
-    reset_button.classList = [`${theme}-reset-btn reset-btn ${theme}`];
-    font_input.classList = [`${theme}-font-input font-input ${theme}`];
+    document.getElementById('menu').classList = [`${theme}-menu menu open ${theme}`];
+    document.getElementById('menu-btn').classList = [`${theme}-menu-btn menu-btn ${theme}`];
+    document.getElementById('close-menu-btn').classList = [`${theme}-close-menu-btn close-menu-btn ${theme}`];
+    document.getElementById('reset-btn').classList = [`${theme}-reset-btn reset-btn ${theme}`];
+    document.getElementById('font-input').classList = [`${theme}-font-input font-input ${theme}`];
     editor_container.classList = [`${theme}-editor-container editor-container ${theme}`];
     editor_header.classList = [`${theme}-editor-header editor-header ${theme}`];
     // code_container.classList = [`${theme}-code-container code-container ${theme}`];
