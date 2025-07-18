@@ -8,9 +8,10 @@ This project is a web-based Python IDE (Integrated Development Environment) prim
 Ensure the following dependencies are installed prior to deploying the web app.
 1. Install Docker on host machine (Add more ... ) 
 2. Clone this repository:
-	```
-	git clone https://github.com/ciaranheaney/accessible-python-web-ide.git
-	```
+
+   ```
+   git clone https://github.com/ciaranheaney/accessible-python-web-ide.git
+   ```
 	
 ## Web App Deployment
 
@@ -42,7 +43,10 @@ Ensure the following dependencies are installed prior to deploying the web app.
 	./cleanup_docker [image-name] [container-name]
  	```
  
-	Example usage: `./cleanup_docker webide-image webide-container`
+	Example usage:
+	```
+	./cleanup_docker webide-image webide-container
+ 	```
 	
 ## Usage Instructions
 
