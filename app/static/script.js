@@ -256,6 +256,7 @@ function run_code() {
             }
             output_area.scroll(0, output_area.scrollHeight);
         })
+    output_area.focus();
 }
 
 
@@ -408,18 +409,20 @@ function set_theme(theme) {
 }
 
 
-function escape_editor(event) {
-    if (event.ctrlKey && event.key === 'Tab') {
-        console.log("ESCAPE");
-        event.preventDefault();
-    }
-}
+// Handler for custom keyboard shortcuts
 document.addEventListener("keydown", function(event) {
+
+    // ESC - Escaping from editor (while keeping tab functionality)
     if (event.key === 'Escape' && document.activeElement.id === 'ace_text-input') {
         console.log("[ESCAPE] text editor");
         event.preventDefault();
-        // run_button.focus();
         clear_input_button.focus();
+    }
+
+    // Ctrl + R - Running code directly from editor
+    if (event.ctrlKey && event.key === 'r' && document.activeElement.id === 'ace_text-input') {
+        event.preventDefault();
+        run_code();
     }
 });
 
