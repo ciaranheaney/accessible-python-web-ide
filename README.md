@@ -84,7 +84,7 @@ A basic overview of how to use the application as it was intended to be used for
 
 **NOTE:** Additional keyboard shortcuts inherited from Ace Editor found [here](https://github.com/ajaxorg/ace/wiki/default-keyboard-shortcuts).
 
-### Suggested JAWS Navigation
+### Suggested JAWS Navigation Hotkeys
 
 | Action | JAWS Shortcut |
 |---|---|
@@ -103,9 +103,9 @@ A basic overview of how to use the application as it was intended to be used for
 
 ### Accessibility Settings
 
-* Font Size of the code editor, input, and output areas
-* Website Theme (Options: Light, Dark, Light Contrast, and Dark Contrast)
-* Code Editor Themes (Options provided by Ace Editor)
+* **Font Size** of the code editor, input, and output areas
+* **Website Theme** (Options: Light, Dark, Light Contrast, and Dark Contrast)
+* **Code Editor Themes** (Options provided by Ace Editor)
 
   INSERT IMAGE OF SIDE MENU WITH OPTIONS
 
@@ -131,3 +131,18 @@ A basic overview of how to use the application as it was intended to be used for
 
 ## Credits
 
+This project was completed as part of ongoing efforts to make computer science education more inclusive and was made possible thanks to the support and guidance of the faculty and resources within the University of Notre Dame’s Computer Science and Engineering Department.
+
+<pre>
+<strong>Project Author:</strong>
+  Ciaran Heaney
+  Computer Science
+  University of Notre Dame
+</pre>
+
+<pre>
+<strong>Faculty Advisor:</strong>
+  Professor Collin McMillan
+  Computer Science and Engineering Department
+  University of Notre Dame
+</pre>
