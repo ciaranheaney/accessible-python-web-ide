@@ -86,7 +86,20 @@ A basic overview of how to use the application as it was intended to be used for
 
 ### Suggested JAWS Navigation
 
-ADD USEFULL JAWS SHORTCUTS
+| Action | JAWS Shortcut |
+|---|---|
+| Next Heading | <kbd>H</kbd> |
+| List Headings | <kbd>Insert</kbd> + <kbd>F6</kbd> |
+| Next Button | <kbd>B</kbd> |
+| Prior Button | <kbd>Shift</kbd> + <kbd>B</kbd> |
+| List Buttons on Screen | <kbd>Ctrl</kbd> + <kbd>Insert</kbd> + <kbd>B</kbd> |
+| Next Paragraph | <kbd>P</kbd> |
+| List Paragraphs on Screen | <kbd>Ctrl</kbd> + <kbd>Insert</kbd> + <kbd>P</kbd> |
+| Say Line | <kbd>INSERT</kbd> + <kbd>UP ARROW</kbd> |
+| Say Prior Line | <kbd>UP ARROW</kbd> |
+| Say Next Line | <kbd>DOWN ARROW</kbd> |
+
+**NOTE:** All JAWS Hotkeys can be found [here](https://www.freedomscientific.com/training/jaws/hotkeys/).
 
 ### Accessibility Settings
 
