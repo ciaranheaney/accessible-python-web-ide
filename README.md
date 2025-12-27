@@ -109,11 +109,14 @@ A basic overview of how to use the application as it was intended to be used for
 │   │   └── styles.css
 │   └── templates
 │       └── index.html
-├── cleanup_docker.sh
+├── cleanup_docker
 ├── Dockerfile
+├── images
+│   ├── webide-screenshot.png
+│   └── webide-sidemenu-screenshot.png
 ├── README.md
 ├── requirements.txt
-└── run_docker.sh
+└── run_docker
 
 4 directories, 9 files
 ```
