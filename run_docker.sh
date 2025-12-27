@@ -10,7 +10,7 @@ fi
 IMAGE_NAME=$1
 CONTAINER_NAME=$2
 PORT=$3
-DOCKERFILE_PATH=".."
+DOCKERFILE_PATH="."
 
 # Build the Docker image
 echo "Building Docker image: $IMAGE_NAME"
