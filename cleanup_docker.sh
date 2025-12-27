@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Check for necessary arguments
-if [ "$#" -ne 2 ]; then
-  echo "Usage: $0 <docker image name> <docker container name>"
+if [ "$#" -ne 0 ]; then
+  echo "Usage: $0"
   exit 1
 fi
 
 # Variables
-IMAGE_NAME=$1
-CONTAINER_NAME=$2
+IMAGE_NAME='webide-image'
+CONTAINER_NAME='webide-container'
 
 # Stop the container if it's running
 if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then

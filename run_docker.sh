@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # Check for necessary arguments
-if [ "$#" -ne 3 ]; then
-  echo "Usage: $0 <docker image name> <docker container name> <port number>"
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 <port number>"
   exit 1
 fi
 
 # Variables from command line
-IMAGE_NAME=$1
-CONTAINER_NAME=$2
-PORT=$3
+IMAGE_NAME='webide-image'
+CONTAINER_NAME='webide-container'
+PORT=$1
 DOCKERFILE_PATH="."
 
 # Build the Docker image
