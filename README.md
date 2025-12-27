@@ -6,8 +6,15 @@ This project is a web-based Python IDE (Integrated Development Environment) prim
 ## Installation Steps
 
 Ensure the following dependencies are installed prior to deploying the web app.
-1. Install Docker on host machine (Add more ... ) 
-2. Clone this repository:
+1. **Install Docker Engine (required)**. 
+   This application runs inside a Docker container, so Docker must be installed before continuing.
+
+   Follow the official Docker installation instructions for your operating system at the link below, and complete all steps listed on that page:
+   - Windows: https://docs.docker.com/desktop/setup/install/windows-install/
+   - Mac: https://docs.docker.com/desktop/setup/install/mac-install/
+   - Linux: https://docs.docker.com/engine/install/
+  
+3. Clone this repository in desired location on host machine:
 
    ```
    git clone https://github.com/ciaranheaney/accessible-python-web-ide.git
