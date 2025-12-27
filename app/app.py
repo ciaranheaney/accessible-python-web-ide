@@ -5,7 +5,11 @@ import time
 app = Flask(__name__)
 
 # Current plan (free) provides 50 submissions per day
+
 JUDGE0_URL = "https://judge0-ce.p.rapidapi.com"
+#JUDGE0_URL = "http://10.24.119.203:2358" TESTING FOR HOSTING LOCALLY
+
+# ** ENTER UNIQUE RAPID API KEY HERE **
 RAPIDAPI_KEY = "aa32f181a6mshbb21d201dc72ca3p1e8658jsne9f8b47564b0"
 
 HEADERS = {
@@ -34,6 +38,7 @@ def run_code():
     data = request.json
     code = data.get("code", "")
     user_input = data.get("input", "")
+    headers = {"Content-Type": "applications/json"}
 
     # Send submission to Judeg0 API
     submission_response = requests.post(
@@ -56,6 +61,8 @@ def run_code():
     )
 
     token = submission_response.json().get("token")
+    print(token)
+    # headers["X-Auth-User"] = token TESTING FOR HOSTING LOCALLY
 
     # Wait to recieve response from API
     while True:
