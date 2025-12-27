@@ -19,7 +19,7 @@ Ensure the following dependencies are installed prior to deploying the web app.
    git clone https://github.com/ciaranheaney/accessible-python-web-ide.git
    ```
 	
-## Web App Deployment
+## Web App Deployment and Cleanup
 
 #### Follow the following steps to deploy the web app.
 1. Build the Docker image and run the Docker container by running the following script:
