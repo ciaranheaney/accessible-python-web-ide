@@ -44,7 +44,7 @@ A basic overview of how to use the application as it was intended to be used for
 
 ### General Instructions
 
-1. Write Python code in code editor section (Python 3.8.1).
+1. Write Python code in code editor section (IDE is running Python 3.8.1).
 2. Enter inputs in the Input Area if necessary for the specific program.
 3. Run the code by pressing the `Run Code` button or using the `Ctrl+R` keyboard shortcut.
 4. Press the `Stop Code` button or use the `Ctrl+S` keyboard shortcut to cancel the code execution request.
@@ -57,7 +57,7 @@ A basic overview of how to use the application as it was intended to be used for
  * **Code Editor**: Where to write Python code
  * **Input Area**: Space to enter any inputs the written code may need
  * **Output Area**: Space where the code's output will be displayed after running
- * **Side Menu:**: Clickable menu that contains the accessibility Settings and help section<br><br>
+ * **Side Menu**: Clickable menu that contains the accessibility Settings and help section<br><br>
 
    ![Screenshot of Web Application](images/webide-screenshot.png "Screenshot of Web Application")
 
