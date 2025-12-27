@@ -29,8 +29,6 @@ Ensure the following dependencies are installed prior to deploying the web app.
  
 2. Visit `http://[host-ip-address]:[port-number]` in web browser.<br>
 	
- 	Example usage: `http://0.0.0.0:5000`
-	
 #### Follow the following steps to shut down the web app.
 1. Stop the Docker container and remove the Docker container and image by running the following script:
 	```
