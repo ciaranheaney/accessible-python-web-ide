@@ -23,11 +23,7 @@ Ensure the following dependencies are installed prior to deploying the web app.
 ## Web App Deployment
 
 #### Follow the following steps to deploy the web app.
-1. Make the `run_docker` script executable by running:
-   ```
-   chmod +x scripts/run_docker.sh
-   ```
-3. Build the Docker image and run the Docker container by running the following script:
+1. Build the Docker image and run the Docker container by running the following script:
 	```
 	./run_docker [image-name] [container-name] [port-number]
  	```
@@ -36,16 +32,12 @@ Ensure the following dependencies are installed prior to deploying the web app.
 	```
 	./run_docker webide-image webide-container 5000
 	```
-5. Visit `http://[ip-address]:[port-number]` in web browser.<br>
+2. Visit `http://[ip-address]:[port-number]` in web browser.<br>
 	
  	Example usage: `http://0.0.0.0:5000`
 	
 #### Follow the following steps to shut down the web app.
-1.  Make the `cleanup_docker` script executable by running:
-	```
-	chmod +x scripts/cleanup_docker.sh
- 	```
-3. Stop the Docker container and remove the Docker container and image by running the following script:
+1. Stop the Docker container and remove the Docker container and image by running the following script:
 	```
 	./cleanup_docker [image-name] [container-name]
  	```
