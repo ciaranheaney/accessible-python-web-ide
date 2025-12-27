@@ -6,7 +6,7 @@ This project is a web-based Python IDE (Integrated Development Environment) prim
 ## Installation Steps
 
 Ensure the following dependencies are installed prior to deploying the web app.
-1. **Install Docker Engine (required)**. 
+1. Install Docker Engine (required). <br>
    This application runs inside a Docker container, so Docker must be installed before continuing.
 
    Follow the official Docker installation instructions for your operating system at the link below, and complete all steps listed on that page:
@@ -14,7 +14,7 @@ Ensure the following dependencies are installed prior to deploying the web app.
    - Mac: https://docs.docker.com/desktop/setup/install/mac-install/
    - Linux: https://docs.docker.com/engine/install/
   
-3. Clone this repository in desired location on host machine:
+2. Clone this repository in desired location on host machine:
 
    ```
    git clone https://github.com/ciaranheaney/accessible-python-web-ide.git
@@ -54,13 +54,12 @@ A basic overview of how to use the application as it was intended to be used for
 
  ### Web App Sections
  
- * **Code Editor**
- * **Input Area**
- * **Output Area**
- * **Side Menu:**
- 	* Contains: Accessibility Settings, Help Section
+ * **Code Editor**: Where to write Python code
+ * **Input Area**: Space to enter any inputs the written code may need
+ * **Output Area**: Space where the code's output will be displayed after running
+ * **Side Menu:**: Clickable menu that contains the accessibility Settings and help section<br><br>
 
-  INSERT IMAGE WITH EACH SECTION OUTLINED AND LABELED
+   ![Screenshot of Web Application](images/webide-screenshot.png "Screenshot of Web Application")
 
 ### Keyboard Shortcuts
 
@@ -95,9 +94,9 @@ A basic overview of how to use the application as it was intended to be used for
 
 * **Font Size** of the code editor, input, and output areas
 * **Website Theme** (Options: Light, Dark, Light Contrast, and Dark Contrast)
-* **Code Editor Themes** (Options provided by Ace Editor)
+* **Code Editor Themes** (Options provided by Ace Editor)<br><br>
 
-  INSERT IMAGE OF SIDE MENU WITH OPTIONS
+  ![Side Menu View Containing Accessibility Settings and Help Section](images/webide-sidemenu-screenshot.png "Side Menu View")
 
 ## Project Structure
 ```
