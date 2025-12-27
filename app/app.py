@@ -7,7 +7,6 @@ app = Flask(__name__)
 # Current plan (free) provides 50 submissions per day
 
 JUDGE0_URL = "https://judge0-ce.p.rapidapi.com"
-#JUDGE0_URL = "http://10.24.119.203:2358" TESTING FOR HOSTING LOCALLY
 
 # ** ENTER UNIQUE RAPID API KEY HERE **
 RAPIDAPI_KEY = "aa32f181a6mshbb21d201dc72ca3p1e8658jsne9f8b47564b0"
@@ -31,16 +30,14 @@ def index():
     return render_template("index.html")
 
 
-
 @app.route("/run", methods=["POST"])
 def run_code():
     # Get code and inputs from frontend
     data = request.json
     code = data.get("code", "")
     user_input = data.get("input", "")
-    headers = {"Content-Type": "applications/json"}
 
-    # Send submission to Judeg0 API
+    # Send submission to Judge0 API
     submission_response = requests.post(
         f"{JUDGE0_URL}/submissions?base64_encoded=false&wait=false",
         json = {
@@ -61,10 +58,8 @@ def run_code():
     )
 
     token = submission_response.json().get("token")
-    print(token)
-    # headers["X-Auth-User"] = token TESTING FOR HOSTING LOCALLY
 
-    # Wait to recieve response from API
+    # Wait to receive response from API
     while True:
         result_response = requests.get(
             f"{JUDGE0_URL}/submissions/{token}?base64_encoded=false",
@@ -91,47 +86,6 @@ def run_code():
             "description": result["status"]["description"]
         }
     })
-
-
-
-
-
-
-
-
-    # NOT CURRENT
-    # result = subprocess.run(
-    #     ['python3', '-c', code],
-    #     input = user_input,
-    #     capture_output=True, 
-    # )
-
-    # output = result.stdout.decode() + result.stderr.decode()
-    # return jsonify({"output": output})
-
-
-    # CURRENT IN USE
-    # proc = subprocess.run(
-    #     [sys.executable, "./sandbox.py", code, user_input],
-    #     stdout=subprocess.PIPE,
-    #     stderr=subprocess.PIPE,
-    #     env={
-    #         "PATH": os.environ.get("PATH"),
-    #     },
-    # )
-
-    # NOT CURRENT
-    # extra = ""
-    # try:
-    #     stdout, stderr = proc.communicate(code, timeout=5)
-    # except subprocess.TimeoutExpired:
-    #     extra = "process timed out"
-    #     proc.kill()
-    #     stdout, stderr = proc.communicate()
-
-    # output = proc.stdout.decode() + proc.stderr.decode()
-
-    # return jsonify({"output": output})
 
 
 if __name__ == "__main__":
