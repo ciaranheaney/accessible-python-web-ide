@@ -412,17 +412,35 @@ function set_theme(theme) {
 // Handler for custom keyboard shortcuts
 document.addEventListener("keydown", function(event) {
 
-    // ESC - Escaping from editor (while keeping tab functionality)
+    // ESC (while in editor) - Escape from editor (while keeping tab functionality)
     if (event.key === 'Escape' && document.activeElement.id === 'ace_text-input') {
         console.log("[ESCAPE] text editor");
         event.preventDefault();
         clear_input_button.focus();
     }
 
-    // Ctrl + R - Running code directly from editor
-    if (event.ctrlKey && event.key === 'r' && document.activeElement.id === 'ace_text-input') {
+    // Ctrl + R - Run code (from anywhere, except when menu is open)
+    if (event.ctrlKey && event.key === 'r' && !document.getElementById('menu')) {
         event.preventDefault();
         run_code();
+    }
+
+    // Ctrl + S - Stop code execution (from anywhere when code is executing, except when menu is open)
+    if (event.ctrlKey && event.key === 's' && document.getElementById('stop-btn')) {
+        event.preventDefault();
+        stop_code();
+    }
+
+    // Ctrl + M - Open menu
+    if (event.ctrlKey && event.key === 'm' && !document.getElementById('menu')) {
+        event.preventDefault();
+        show_menu();
+    }
+
+    // ESC (while in menu) - Escape from menu
+    if (event.key === 'Escape' && document.getElementById('menu')) {
+        event.preventDefault();
+        hide_menu();
     }
 });
 
