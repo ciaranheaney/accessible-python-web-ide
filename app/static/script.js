@@ -280,7 +280,6 @@ function clear_code() {
 function clear_output() {
     console.log("[CLEAR] output...")
     output_area.value = "";
-    // editor.focus();
 }
 
 function clear_input() {
