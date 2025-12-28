@@ -54,7 +54,7 @@ https://rapidapi.com/judge0-official/api/judge0-ce/pricing
 	RAPIDAPI_KEY = "api-key-here"
    ```
 
-NOTE: To host the API locally instead, go to the following link and follow its steps:
+**NOTE**: To host the API locally instead, go to the following link and follow its steps:
 https://github.com/judge0/judge0/blob/master/CHANGELOG.md#deployment-procedure
 
 ## Usage Instructions
