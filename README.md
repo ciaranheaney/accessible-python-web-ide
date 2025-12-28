@@ -24,7 +24,7 @@ Ensure the following dependencies are installed prior to deploying the web app.
 #### Follow the following steps to deploy the web app.
 1. Build the Docker image and run the Docker container by running the following script:
 	```
-	./run_docker [port-number]
+	./scripts/run_docker [port-number]
  	```
  
 2. Visit the following link in a web browser (with correct fill-ins):<br>
@@ -35,7 +35,7 @@ Ensure the following dependencies are installed prior to deploying the web app.
 #### Follow the following steps to shut down the web app.
 1. Stop the Docker container and remove the Docker container and image by running the following script:
 	```
-	./cleanup_docker
+	./scripts/cleanup_docker
  	```
 	
 ## Usage Instructions
