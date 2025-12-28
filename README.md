@@ -21,7 +21,7 @@ Ensure the following dependencies are installed prior to deploying the web app.
 	
 ## Web App Deployment and Cleanup
 
-#### Follow the following steps to deploy the web app.
+### Follow the following steps to deploy the web app.
 1. Build the Docker image and run the Docker container by running the following script:
 	```
 	./scripts/run_docker [port-number]
@@ -32,12 +32,30 @@ Ensure the following dependencies are installed prior to deploying the web app.
     http://[host-ip-address]:[port-number]
    ```
 	
-#### Follow the following steps to shut down the web app.
+### Follow the following steps to shut down the web app.
 1. Stop the Docker container and remove the Docker container and image by running the following script:
 	```
 	./scripts/cleanup_docker
  	```
-	
+
+## API Usage
+This application uses the Judge0 API to remotely run the user-written Python code in an isolated sandbox. This way, the IDE will not be vulnerable to malicious code. Currently, the application is set up on the basic/free plan which only allows for 50 submissions per day. This was great for testing during the app's development, but will not be insufficient in practice. There are various plans to scale the amount of API submissions as needed. 
+
+To increase the amount of submissions for the IDE, please follow these steps:
+1. Sign up for a plan that fits your submission needs at the following link:<br>
+https://rapidapi.com/judge0-official/api/judge0-ce/pricing
+2. Replace the API key in the `app.py` file with your new API key for your plan
+   ```
+    # Current plan (free) provides 50 submissions per day
+	JUDGE0_URL = "https://judge0-ce.p.rapidapi.com"
+   
+	# ** ENTER UNIQUE RAPID API KEY HERE **
+	RAPIDAPI_KEY = "api-key-here"
+   ```
+
+NOTE: To host the API locally instead, go to the following link and follow its steps:
+https://github.com/judge0/judge0/blob/master/CHANGELOG.md#deployment-procedure
+
 ## Usage Instructions
 
 A basic overview of how to use the application as it was intended to be used for maximum accessibility. This includes various navigation and customization tools, and information about the general layout of the application.
