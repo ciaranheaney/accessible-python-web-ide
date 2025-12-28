@@ -5,7 +5,6 @@ import time
 app = Flask(__name__)
 
 # Current plan (free) provides 50 submissions per day
-
 JUDGE0_URL = "https://judge0-ce.p.rapidapi.com"
 
 # ** ENTER UNIQUE RAPID API KEY HERE **
@@ -70,8 +69,6 @@ def run_code():
             break
         time.sleep(1)
 
-    print(result)
-
     # Send API response to frontend
     return jsonify({
         "stdout": result["stdout"],
@@ -89,5 +86,4 @@ def run_code():
 
 
 if __name__ == "__main__":
-    # app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
     app.run(host="0.0.0.0", port=5000, debug=True)
