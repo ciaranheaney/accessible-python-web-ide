@@ -39,7 +39,7 @@ Ensure the following dependencies are installed prior to deploying the web app.
  	```
 
 ## API Usage
-This application uses the Judge0 API to remotely run the user-written Python code in an isolated sandbox. This way, the IDE will not be vulnerable to malicious code. Currently, the application is set up on the basic/free plan which only allows for 50 submissions per day. This was great for testing during development of the web app, but will be not be sufficient in practice. There are various plans to scale the amount of API submissions as needed. 
+This application uses the [Judge0 API](https://ce.judge0.com/)  to remotely run the user-written Python code in an isolated sandbox. This way, the IDE will not be vulnerable to malicious code. Currently, the application is set up on the basic/free plan which only allows for 50 submissions per day. This was great for testing during development of the web app, but will be not be sufficient in practice. There are various plans to scale the amount of API submissions as needed. 
 
 To increase the amount of submissions for the IDE, please follow these steps:<br>
 1. Sign up for a plan that fits your submission needs at the following link:<br>
