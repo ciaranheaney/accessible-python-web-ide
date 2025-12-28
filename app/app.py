@@ -8,7 +8,7 @@ app = Flask(__name__)
 JUDGE0_URL = "https://judge0-ce.p.rapidapi.com"
 
 # ** ENTER UNIQUE RAPID API KEY HERE **
-RAPIDAPI_KEY = "aa32f181a6mshbb21d201dc72ca3p1e8658jsne9f8b47564b0"
+RAPIDAPI_KEY = "ec3e448095msh1220bfb94daaccep1f8968jsnf02c6404341d"
 
 HEADERS = {
     "Content-Type": "application/json",
@@ -18,10 +18,10 @@ HEADERS = {
 
 PYTHON_LANGUAGE_ID = 71   # Found at https://ce.judge0.com/languages (Python 3.8.1)
 
-MEMORY_LIMIT = 64000      # 64kb
-CPU_TIME_LIMIT = 2        # 1sec
-CPU_EXTRA_TIME = 0.5      # 0.5sec
-WALL_TIME_LIMIT = 5       # 5sec
+MEMORY_LIMIT = 262144     # 256 MB
+CPU_TIME_LIMIT = 5        # 5sec
+CPU_EXTRA_TIME = 1.0      # 1sec
+WALL_TIME_LIMIT = 10      # 10sec
 
 
 @app.route("/")
