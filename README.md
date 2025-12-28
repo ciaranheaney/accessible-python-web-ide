@@ -32,7 +32,7 @@ Ensure the following dependencies are installed prior to deploying the web app.
     http://[host-ip-address]:[port-number]
    ```
 	
-### Follow the following steps to shut down the web app.
+### Follow the following step to shut down the web app.
 1. Stop the Docker container and remove the Docker container and image by running the following script:
 	```
 	./scripts/cleanup_docker
@@ -44,6 +44,7 @@ This application uses the Judge0 API to remotely run the user-written Python cod
 To increase the amount of submissions for the IDE, please follow these steps:<br>
 1. Sign up for a plan that fits your submission needs at the following link:<br>
 https://rapidapi.com/judge0-official/api/judge0-ce/pricing
+
 2. Replace the API key in the `app.py` file with your new API key for your plan (on line 11)
    ```
     # Current plan (free) provides 50 submissions per day
