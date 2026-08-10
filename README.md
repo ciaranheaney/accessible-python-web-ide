@@ -18,43 +18,69 @@ Ensure the following dependencies are installed prior to deploying the web app.
    ```
    git clone https://github.com/ciaranheaney/accessible-python-web-ide.git
    ```
-	
-## Web App Deployment and Cleanup
 
-### Follow the following steps to deploy the web app.
-1. Build the Docker image and run the Docker container by running the following script:
+3. Create a local `.env` file from the example (required for Judge0):
+
+   ```
+   cp .env.example .env
+   ```
+
+   Then set `RAPIDAPI_KEY` in `.env` to your RapidAPI key. The `.env` file is gitignored and must never be committed.
+
+## Secrets / Environment Variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `RAPIDAPI_KEY` | Yes | RapidAPI key for Judge0 CE |
+| `JUDGE0_URL` | No | Defaults to `https://judge0-ce.p.rapidapi.com` |
+| `JUDGE0_HOST` | No | Defaults to `judge0-ce.p.rapidapi.com` |
+
+## Deploy on Vercel (recommended)
+
+1. Push this repository to GitHub (without `.env`).
+2. Import the project at [vercel.com/new](https://vercel.com/new).
+3. In the Vercel project **Settings → Environment Variables**, add `RAPIDAPI_KEY` (and optional Judge0 overrides).
+4. Deploy. Vercel detects the Flask app in `app/app.py` and serves static files from `public/`.
+
+Locally with the Vercel runtime:
+
+```
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+vercel dev
+```
+
+## Docker Deployment and Cleanup
+
+### Deploy with Docker
+1. Ensure `.env` exists with `RAPIDAPI_KEY` set.
+2. Build and run:
+
 	```
 	./scripts/run_docker [port-number]
  	```
  
-2. Visit the following link in a web browser (with correct fill-ins):<br>
+3. Open:
+
     ```
     http://[host-ip-address]:[port-number]
    ```
 	
-### Follow the following step to shut down the web app.
-1. Stop the Docker container and remove the Docker container and image by running the following script:
+### Shut down
+1. Stop and remove the container/image:
+
 	```
 	./scripts/cleanup_docker
  	```
 
 ## API Usage
-This application uses the [Judge0 API](https://ce.judge0.com/)  to remotely run the user-written Python code in an isolated sandbox. This way, the IDE will not be vulnerable to malicious code. Currently, the application is set up on the basic/free plan which only allows for 50 submissions per day. This was great for testing during development of the web app, but will be not be sufficient in practice. There are various plans to scale the amount of API submissions as needed. 
-
-To increase the amount of submissions for the IDE, please follow these steps:<br>
-1. Sign up for a plan that fits your submission needs at the following link:<br>
+This application uses the [Judge0 API](https://ce.judge0.com/) to remotely run user-written Python code in an isolated sandbox. The free RapidAPI plan allows a limited number of submissions per day; upgrade as needed at:
 https://rapidapi.com/judge0-official/api/judge0-ce/pricing
 
-2. Replace the API key in the `app.py` file with your new API key for your plan (on line 11)
-   ```
-    # Current plan (free) provides 50 submissions per day
-	JUDGE0_URL = "https://judge0-ce.p.rapidapi.com"
-   
-	# ** ENTER UNIQUE RAPID API KEY HERE **
-	RAPIDAPI_KEY = "api-key-here"
-   ```
+Update your key in `.env` (local/Docker) or in the Vercel environment variables (production). Do not put API keys in source files.
 
-**NOTE**: To host the API locally instead, go to the following link and follow its steps:
+**NOTE**: To host Judge0 locally instead, follow:
 https://github.com/judge0/judge0/blob/master/CHANGELOG.md#deployment-procedure
 
 ## Usage Instructions
@@ -122,23 +148,21 @@ A basic overview of how to use the application as it was intended to be used for
 .
 ├── app
 │   ├── app.py
-│   ├── static
-│   │   ├── ace [54 entries exceeds filelimit, not opening dir]
-│   │   ├── script.js
-│   │   └── styles.css
 │   └── templates
 │       └── index.html
-├── images
-│   ├── webide-screenshot.png
-│   └── webide-sidemenu-screenshot.png
-├── scripts
+├── public
+│   ├── ace/
+│   ├── script.js
+│   └── styles.css
+├── images/
+├── scripts/
 │   ├── cleanup_docker
 │   └── run_docker
+├── .env.example
 ├── Dockerfile
-├── README.md
-└── requirements.txt
-
-4 directories, 9 files
+├── requirements.txt
+├── vercel.json
+└── README.md
 ```
 
 ## Credits

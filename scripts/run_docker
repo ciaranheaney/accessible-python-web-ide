@@ -25,9 +25,15 @@ if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
     echo ""
 fi
 
-# Run the container in detached mode
+# Run the container in detached mode (loads secrets from .env if present)
 echo "Running Docker container: $CONTAINER_NAME"
-docker run -d --name $CONTAINER_NAME -p $PORT:5000 $IMAGE_NAME
+ENV_FILE_ARGS=()
+if [ -f .env ]; then
+  ENV_FILE_ARGS=(--env-file .env)
+else
+  echo "Warning: .env not found. Copy .env.example to .env and set RAPIDAPI_KEY."
+fi
+docker run -d --name $CONTAINER_NAME -p $PORT:5000 "${ENV_FILE_ARGS[@]}" $IMAGE_NAME
 echo ""
 
 # Show container status

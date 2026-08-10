@@ -1,5 +1,6 @@
 
 // Scripts for setting up Ace editor
+ace.config.set("basePath", "/ace");
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/textmate");
 editor.session.setMode("ace/mode/python");
@@ -243,8 +244,9 @@ function run_code() {
         .then(data => {
             console.log("[RECIEVED] data from server...")
             console.log(data)
-            output_area.value = data.stdout;
-            console.log(`[OUTPUT]:\n${data.stdout}`);
+            const output = data.stdout || data.stderr || data.compile_output || data.message || "";
+            output_area.value = output;
+            console.log(`[OUTPUT]:\n${output}`);
             control_button.innerHTML = '<button class="btn run-btn" id="run-btn" onclick="run_code()" aria-controls="output-area"><i class="fas fa-play" id="run-btn-icon"></i><label for="run-btn" id="run-btn-lbl">Run Code</label></button>';
             output_area.scroll(0, output_area.scrollHeight);
         })
@@ -252,6 +254,7 @@ function run_code() {
             if (err.name === 'AbortError') {
             } else {
                 console.log(`[ERROR]: ${err}`);
+                output_area.value = `ERROR: ${err.message || err}`;
                 control_button.innerHTML = '<button class="btn run-btn" id="run-btn" onclick="run_code()" aria-controls="output-area"><i class="fas fa-play" id="run-btn-icon"></i><label for="run-btn" id="run-btn-lbl">Run Code</label></button>';
             }
             output_area.scroll(0, output_area.scrollHeight);
