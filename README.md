@@ -3,6 +3,9 @@
 
 This project is a web-based Python IDE (Integrated Development Environment) primarily designed to be accessible for blind and low-vision students learning how to code utilizing the JAWS screenreader on Windows machines.
 
+## Live Demo
+[https://accessible-python-web-ide.vercel.app/](https://accessible-python-web-ide.vercel.app/)
+
 ## Installation Steps
 
 Ensure the following dependencies are installed prior to deploying the web app.
